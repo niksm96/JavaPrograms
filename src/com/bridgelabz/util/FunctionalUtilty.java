@@ -1,9 +1,10 @@
 package com.bridgelabz.util;
 import com.bridgelabz.functionalprogram.*;
+import java.io.*;
 import java.util.Scanner;
 import java.util.Random;
 
-public class FunctionalUtilty {
+public class FunctionalUtilty<E> {
 	public void replaceString(String str) {
 		Scanner s = new Scanner(System.in);
 		String uname = s.nextLine();
@@ -79,8 +80,112 @@ public class FunctionalUtilty {
 	public void primeFactor(){
 		Scanner s=new Scanner(System.in);
 		int n=s.nextInt();
-		for(int i=1;i*i<=n;i++){
-			
+		while(n%2==0){
+			System.out.println(2);
+			n=n/2;
 		}
+		for(int i=3;i<Math.sqrt(n);i+=2){
+			while(n%i==0){
+				System.out.println(i);
+				n=n/i;
+			}
+		}
+		if(n>2)
+			System.out.println(n);
+		s.close();
+	}
+	
+	public void gambler(){
+		Scanner s=new Scanner(System.in);
+		System.out.println("Enter the stake");
+		int stake=s.nextInt();
+		System.out.println("Enter the goal");
+		int goal=s.nextInt();
+		System.out.println("Enter the number of times to gamble");
+		int no_of_times=s.nextInt();
+		int win=0,loose=0;
+		for(int i=1;i<=no_of_times;i++){
+			double r=Math.random();
+			int cash=stake;
+			while(cash>0 && cash<goal){
+				if(r<0.5)
+					cash--;
+				else
+					cash++;
+			}
+			if(cash==goal)
+				win++;
+			else
+				loose++;
+		}
+		System.out.println(win + " wins of " + no_of_times);
+        System.out.println("Percent of games won = " + 100.0 * win / no_of_times);
+        System.out.println("Percent of games lose= " + 100.0 * loose/no_of_times);
+		s.close();
+	}
+	
+	public static void couponNumber(){
+		Scanner s=new Scanner(System.in);
+		Random r=new Random();
+		int num=s.nextInt();
+		int dist_num[]=new int[50];
+		int temp=0,count=0;
+		for(int i=0;i<num;i++){
+			int rand_num=r.nextInt(50);
+			count++;
+			if(temp!=rand_num)
+				dist_num[i]=rand_num;
+			temp=dist_num[i];
+		}
+		for(int i=0;i<num;i++){
+			System.out.print(dist_num[i]+" ");
+		}
+		System.out.println();
+		System.out.println("Number of random numbers needed:"+ count);
+		s.close();
+	}
+	
+	public void displayArray(E[][] garray){
+		for(int i=0;i<garray.length;i++){
+			for(int j=0;j<garray.length;j++){
+				System.out.println(garray[i][j]);
+			}
+		}
+		
+	}
+	
+	public void sumZero(){
+		Scanner s=new Scanner(System.in);
+		System.out.println("Enter the number of integers");
+		int num=s.nextInt();
+		int array[]=new int[50];
+		System.out.println("Enter the interges in the array");
+		for(int i=0;i<num;i++){
+			array[i]=s.nextInt();
+		}
+		System.out.println("The triplets that sum to zero are:");
+		boolean flag=false;
+		for(int i=0;i<num-2;i++){
+			for(int j=i+1;j<num-1;j++){
+				for(int k=j+1;k<num;k++){
+					if(array[i]+array[j]+array[k]==0){
+						System.out.println("("+array[i]+","+array[j]+","+array[k]+")");
+						flag=true;
+					}
+				}
+			}
+		}
+		if(flag==false)
+			System.out.println("No such triplets found");
+		s.close();
+	}
+	
+	public double distance(int x,int y){
+		return Math.sqrt(Math.pow(x, 2)+Math.pow(y, 2));
+	}
+	
+	
+	public String itString(String str){
+		
 	}
 }
