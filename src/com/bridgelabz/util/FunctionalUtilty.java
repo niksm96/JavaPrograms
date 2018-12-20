@@ -185,7 +185,27 @@ public class FunctionalUtilty<E> {
 	}
 	
 	
-	public String itString(String str){
-		
+	public void quadratic(int a,int b,int c){
+			double delta=(b*b)-(4*a*c);
+			if(delta>0){
+				double first_root=(-b+Math.sqrt(delta))/(2*a);
+				double second_root=(-b-Math.sqrt(delta))/(2*a);
+				System.out.println("The roots are real and unequal:");
+				System.out.println("First root:"+ first_root);
+				System.out.println("Second root:"+ second_root);
+			}
+			else if(delta==0){
+				double first_root=(-b+Math.sqrt(delta))/(2*a);
+				System.out.println("The roots are real and equal:");
+				System.out.println("First root:"+ first_root);
+			}
+			else
+				System.out.println("The roots are imaginary");
+	}
+	
+	public void windChill(double temp,double wind_speed){
+		if(temp<Math.abs(50)){
+			double eff_temp=35.74+(0.6215*temp)+(0.4275*temp-35.75)*Math.pow(wind_speed, 0.16);
+		}
 	}
 }
