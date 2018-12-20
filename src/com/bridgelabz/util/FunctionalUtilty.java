@@ -1,10 +1,18 @@
 package com.bridgelabz.util;
-import com.bridgelabz.functionalprogram.*;
-import java.io.*;
 import java.util.Scanner;
 import java.util.Random;
 
 public class FunctionalUtilty<E> {
+	
+	private String[] permuteArray;
+	private int index = 0;
+	
+	public FunctionalUtilty() {}
+	
+	public FunctionalUtilty(int fact) {
+		this.permuteArray = new String[fact];
+	}
+	
 	public void replaceString(String str) {
 		Scanner s = new Scanner(System.in);
 		String uname = s.nextLine();
@@ -128,10 +136,10 @@ public class FunctionalUtilty<E> {
 		Scanner s=new Scanner(System.in);
 		Random r=new Random();
 		int num=s.nextInt();
-		int dist_num[]=new int[50];
+		int dist_num[]=new int[num];
 		int temp=0,count=0;
 		for(int i=0;i<num;i++){
-			int rand_num=r.nextInt(50);
+			int rand_num=r.nextInt(num);
 			count++;
 			if(temp!=rand_num)
 				dist_num[i]=rand_num;
@@ -159,7 +167,7 @@ public class FunctionalUtilty<E> {
 		System.out.println("Enter the number of integers");
 		int num=s.nextInt();
 		int array[]=new int[50];
-		System.out.println("Enter the interges in the array");
+ 		System.out.println("Enter the interges in the array");
 		for(int i=0;i<num;i++){
 			array[i]=s.nextInt();
 		}
@@ -204,8 +212,57 @@ public class FunctionalUtilty<E> {
 	}
 	
 	public void windChill(double temp,double wind_speed){
-		if(temp<Math.abs(50)){
+		if(temp<Math.abs(50)||(wind_speed<120 && wind_speed<3)){
 			double eff_temp=35.74+(0.6215*temp)+(0.4275*temp-35.75)*Math.pow(wind_speed, 0.16);
+			System.out.println("The efficient temperature:"+ eff_temp);
+		}
+		else
+			System.out.println("Temperature or Wind Speed out of range");
+			
+	}
+	
+	public void stopWatch() {
+		Scanner s=new Scanner(System.in);
+		boolean start_end=s.nextBoolean();
+		if(start_end==true) {
+			long start_time=System.currentTimeMillis();
+			System.out.println("Enter 0 to end");
+			int end=s.nextInt();
+			if(end==0) {
+				long end_time=System.currentTimeMillis();
+				long res=end_time-start_time;
+				System.out.println(res);
+			}
+			else
+				System.out.println("Enter 0 to end");
+		}
+		s.close();
+	}
+	
+	public String[] permute(char[] array, int startIndex, int endIndex) {
+        if(startIndex == endIndex){
+        	permuteArray[index++] = String.valueOf(array);
+           // System.out.println(String.valueOf(array)); 
+        }else{
+            for(int i=startIndex;i<=endIndex;i++) {
+                 swap(array, startIndex, i );
+                 permute(array, startIndex+1, endIndex);
+                 swap(array, startIndex, i );
+            }
+        }
+		return permuteArray;
+    }
+	public void swap(char[] array, int x, int y) {
+        char temp = array[x];
+        array[x] = array[y];
+        array[y] = temp;
+    }
+	
+	public void ticTacToe(char[][] board,int computer,char player) {
+		Random r=new Random();
+		int choice=r.nextInt(1);
+		if(choice==0) {
+			
 		}
 	}
 }
