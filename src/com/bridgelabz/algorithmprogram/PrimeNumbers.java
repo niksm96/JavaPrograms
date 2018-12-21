@@ -10,8 +10,7 @@ public class PrimeNumbers {
 		int m=s.nextInt();
 		System.out.println("Enter n");
 		int n=s.nextInt();
-		Alg
-		primeNumbers(m,n);
+		AlgorithmUtility.primeNumbers(m,n);
 		s.close();
 	}
 
