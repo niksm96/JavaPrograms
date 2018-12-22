@@ -23,12 +23,19 @@ public class Distance {
 	*/
 	public static void main(String[] args) {
 		Scanner s=new Scanner(System.in);
+		
+		//Reading inputs from the user
 		System.out.println("Enter x");
 		int x=s.nextInt();
 		System.out.println("Enter y");
 		int y=s.nextInt();
+		
 		FunctionalUtilty fu=new FunctionalUtilty();
+		
+		//Method 1- using non-static function of FunctionalUtilty class
+		//of com.bridgelabz.util package
 		double dist=fu.distance(x,y);
+		
 		System.out.println(dist);
 		s.close();
 	}
