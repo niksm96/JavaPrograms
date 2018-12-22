@@ -132,7 +132,7 @@ public class FunctionalUtilty<E> {
 		s.close();
 	}
 	
-	public static void couponNumber(){
+	public void couponNumber(){
 		Scanner s=new Scanner(System.in);
 		Random r=new Random();
 		int num=s.nextInt();

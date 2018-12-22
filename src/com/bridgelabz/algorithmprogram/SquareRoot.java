@@ -1,40 +1,38 @@
 /******************************************************************************
- *  Compilation:  javac -d bin PrimeNumbers.java
- *  Execution:    java -cp bin com.bridgelabz.algorithmprogram.PrimeNumbers 
+ *  Compilation:  javac -d bin SquareRoot.java
+ *  Execution:    java -cp bin com.bridgelabz.algorithmprogram.SquareRoot 
  *  
- *  Purpose: Finds the prime numbers in the given range
+ *  Purpose: Finds the square root of the given number using Newton's Method
  *
  *  @author  Nikitha Mundargi
  *  @version 1.0
- *  @since   21-12-2018
+ *  @since   22-12-2018
  *
  ******************************************************************************/
 
 package com.bridgelabz.algorithmprogram;
 
-import java.util.Scanner;
 import com.bridgelabz.util.AlgorithmUtility;
+import java.util.Scanner;
 
-public class PrimeNumbers {
+public class SquareRoot {
 	
 	/*
 	* The main function is written to take input from the user and
-	* call the primeNumber() function that finds prime numbers
+	* call the squareRoot() function that finds square root of a number
 	*/
 	public static void main(String[] args) {
 		Scanner s=new Scanner(System.in);
 		
-		//Reading inputs from user
-		System.out.println("Enter the range: say m and n");
-		System.out.println("Enter m");
-		int m=s.nextInt();
-		System.out.println("Enter n");
-		int n=s.nextInt();
+		//Reading input from the user
+		System.out.println("Enter the number to find sqaure root of");
+		double num=s.nextDouble();
 		
 		//Method 1- using static function of AlgorithmUtility class of
 		//com.bridgelabz.util package
-		AlgorithmUtility.primeNumbers(m,n);
+		AlgorithmUtility.squareRoot(num);
+		
 		s.close();
 	}
-
+	
 }
