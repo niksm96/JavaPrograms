@@ -26,19 +26,28 @@ public class SwapNibble {
 	*/
 	public static void main(String[] args) {
 		System.out.println("Enter the integer");
+		int flag=0;
 		
 		//Reading input from the user
-		int x=AlgorithmUtility.userInt();
+		int num=AlgorithmUtility.userInt();
 		
 		//Method 1- using static function of AlgorithmUtility class of
 		//com.bridgelabz.util package
-		String bin=AlgorithmUtility.toBinary(x);
-		
-		//Method 1- using static function of AlgorithmUtility class of
+		int swap=AlgorithmUtility.swapNibble(num);
+				
+		//Method 2- using static function of AlgorithmUtility class of
 		//com.bridgelabz.util package
-		String str_bin=AlgorithmUtility.swapNibble(bin);
+		int[] bin=AlgorithmUtility.toBinary(swap);
 		
-		System.out.println("After swapping nibbles: "+str_bin);
-		
-	}
+		for(int i=7;i>=0;i--)
+			System.out.print(bin[i]);
+			for(int i=0;i<swap;i++){
+				Math.pow(2, i);
+				flag=1;
+			}
+			if(flag==1)
+				System.out.println("The number is the power of 2");
+			else
+				System.out.println("The number is not the power of 2");
+			}
 }

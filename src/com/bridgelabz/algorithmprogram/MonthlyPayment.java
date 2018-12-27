@@ -14,7 +14,6 @@
 package com.bridgelabz.algorithmprogram;
 
 import com.bridgelabz.util.AlgorithmUtility;
-import java.util.Scanner;
 
 public class MonthlyPayment {
 	
@@ -23,20 +22,17 @@ public class MonthlyPayment {
 	* call the monthlyPayment() function calculates monthly payment
 	*/
 	public static void main(String[] args) {
-		Scanner s=new Scanner(System.in);
-		
 		//Reading inputs from user
 		System.out.println("Enter the principle loan amount");
-		int principle=s.nextInt();
+		int principle=AlgorithmUtility.userInt();
 		System.out.println("Enter the years to pay off");
-		int year=s.nextInt();
+		int year=AlgorithmUtility.userInt();
 		System.out.println("Enter the percentage for interest amount");
-		double rate=s.nextDouble();
+		double rate=AlgorithmUtility.userDouble();
 		
 		//Method 1- using static function of AlgorithmUtility class of
 		//com.bridgelabz.util package
 		double monthly_payment=AlgorithmUtility.monthlyPayment(principle,year,rate);
 		System.out.println("The monthly payment= "+monthly_payment);
-		s.close();
 	}
 }

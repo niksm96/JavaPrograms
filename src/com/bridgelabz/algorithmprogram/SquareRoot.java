@@ -13,7 +13,6 @@
 package com.bridgelabz.algorithmprogram;
 
 import com.bridgelabz.util.AlgorithmUtility;
-import java.util.Scanner;
 
 public class SquareRoot {
 	
@@ -22,17 +21,16 @@ public class SquareRoot {
 	* call the squareRoot() function that finds square root of a number
 	*/
 	public static void main(String[] args) {
-		Scanner s=new Scanner(System.in);
 		
 		//Reading input from the user
 		System.out.println("Enter the number to find sqaure root of");
-		double num=s.nextDouble();
+		double num=AlgorithmUtility.userDouble();
 		
 		//Method 1- using static function of AlgorithmUtility class of
 		//com.bridgelabz.util package
-		AlgorithmUtility.squareRoot(num);
+		double res=AlgorithmUtility.squareRoot(num);
 		
-		s.close();
+		System.out.println("The square root of the given number using Newton's Method is: "+ res);
 	}
 	
 }

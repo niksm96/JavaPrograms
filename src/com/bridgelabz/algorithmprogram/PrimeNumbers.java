@@ -12,7 +12,9 @@
 
 package com.bridgelabz.algorithmprogram;
 
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.bridgelabz.util.AlgorithmUtility;
 
 public class PrimeNumbers {
@@ -22,19 +24,22 @@ public class PrimeNumbers {
 	* call the primeNumber() function that finds prime numbers
 	*/
 	public static void main(String[] args) {
-		Scanner s=new Scanner(System.in);
 		
 		//Reading inputs from user
 		System.out.println("Enter the range: say m and n");
 		System.out.println("Enter m");
-		int m=s.nextInt();
+		int m=AlgorithmUtility.userInt();
 		System.out.println("Enter n");
-		int n=s.nextInt();
+		int n=AlgorithmUtility.userInt();
+		
+		List<Integer> lst=new ArrayList<>();
 		
 		//Method 1- using static function of AlgorithmUtility class of
 		//com.bridgelabz.util package
-		AlgorithmUtility.primeNumbers(m,n);
-		s.close();
-	}
-
+		lst=AlgorithmUtility.primeNumbers(m,n);
+		
+		for(int i:lst)
+			System.out.println(i);
+		}
+		
 }

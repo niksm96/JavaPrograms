@@ -33,7 +33,7 @@ public class PermutationString {
 		char array[]=str.toCharArray();
 		int endIndex=str.length()-1;
 		int startIndex=0;
-		FunctionalUtilty fu=new FunctionalUtilty(6);
+		FunctionalUtilty fu=new FunctionalUtilty(50);
 		
 
 		//Method 1- using non-static function of FunctionalUtilty class
@@ -44,5 +44,6 @@ public class PermutationString {
 		for (String string : array1) {
 			System.out.println(string);
 		}
+		s.close();
 	}
 }

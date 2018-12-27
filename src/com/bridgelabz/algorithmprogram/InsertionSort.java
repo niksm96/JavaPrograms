@@ -11,8 +11,7 @@
  ******************************************************************************/
 package com.bridgelabz.algorithmprogram;
 
-import com.bridgelabz.util.*;
-import java.util.*;
+import com.bridgelabz.util.AlgorithmUtility;
 
 public class InsertionSort {
 	
@@ -21,21 +20,22 @@ public class InsertionSort {
 	* the function insertionSort that sorts the array
 	*/
 	public static void main(String[] args) {
-		Scanner s=new Scanner(System.in);
-		
 		System.out.println("Enter the number of strings to be inserted");
 		
 		//Reading inputs from the user
-		int num=s.nextInt();
+		int num=AlgorithmUtility.userInt();
 		String[] str_array=new String[num];
 		for(int i=0;i<num;i++) {
-			str_array[i]=s.next();
+			str_array[i]=AlgorithmUtility.userString();
 		}
 		
 		//Method 1- using static function of AlgorithmUtility class of
 		//com.bridgelabz.util package
-		AlgorithmUtility.insertionSort(str_array,num);
+		String[] res_array=AlgorithmUtility.insertionSort(str_array,num);
 		
-		s.close();
+		System.out.println("The sorted array are:");
+		for(int i=0;i<res_array.length;i++) {
+			System.out.println(res_array[i]);
+		}
 	}
 }

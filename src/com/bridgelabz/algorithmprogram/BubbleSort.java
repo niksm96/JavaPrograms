@@ -13,7 +13,6 @@
 package com.bridgelabz.algorithmprogram;
 
 import com.bridgelabz.util.AlgorithmUtility;
-import java.util.Scanner;
 
 public class BubbleSort {
 	
@@ -22,11 +21,10 @@ public class BubbleSort {
 	* call the bubbleSort function that sorts array of integers
 	*/
 	public static void main(String[] args) {
-		Scanner s=new Scanner(System.in);
 		System.out.println("Enter the number of intergers to be sorted");
 		
 		//Reading input number of integers to be sorted from user
-		int n=s.nextInt();
+		int n=AlgorithmUtility.userInt();
 		
 		int[] array=new int[50];
 		
@@ -34,13 +32,17 @@ public class BubbleSort {
 		
 		//Reading input integers entered by the user
 		for(int i=0;i<n;i++) {
-			array[i]=s.nextInt();
+			array[i]=AlgorithmUtility.userInt();
 		}
 		
 		//Method 1- using static function of AlgorithmUtility class of
 		//com.bridgelabz.util package
-		AlgorithmUtility.bubbleSort(array,n);
-		s.close();
+		int[] res_array=AlgorithmUtility.bubbleSort(array,n);
+		
+		System.out.println("The sorted array are:");
+		for(int i=0;i<n;i++) {
+			System.out.println(res_array[i]);
+		}
 	}
 
 }

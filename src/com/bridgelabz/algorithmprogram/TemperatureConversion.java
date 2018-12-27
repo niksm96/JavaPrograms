@@ -12,7 +12,6 @@
 
 package com.bridgelabz.algorithmprogram;
 
-import java.util.Scanner;
 import com.bridgelabz.util.AlgorithmUtility;
 
 public class TemperatureConversion {
@@ -22,22 +21,22 @@ public class TemperatureConversion {
 	* call the tempConversion function that converts temperature
 	*/
 	public static void main(String[] args) {
-		Scanner s=new Scanner(System.in);
+		
 		System.out.println("Enter the choice to convert to the following:");
 		System.out.println("1-Fahrenheit 2-Celcius");
 		
 		//Reading the choice of the user
-		int choice=s.nextInt();
+		int choice=AlgorithmUtility.userInt();
 		
 		System.out.println("Enter the temp");
 		
 		//Reading the input from the user
-		double temp=s.nextDouble();
+		double temp=AlgorithmUtility.userDouble();
 		
 		//Method 1- using static function of AlgorithmUtility class of
 		//com.bridgelabz.util package
-		AlgorithmUtility.temperatureConversion(choice,temp);
-		s.close();
+		double conv_temp=AlgorithmUtility.temperatureConversion(choice,temp);
+		System.out.println(conv_temp);
 		
 	}
 }

@@ -13,80 +13,115 @@
 
 package com.bridgelabz.util;
 
-import com.bridgelabz.algorithmprogram.*;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 
 public class AlgorithmUtility{
 	
+	/**
+	 * static object is created for Scanner class to avoid
+	 * multiple object creations of the same class.
+	 */
 	static Scanner s=new Scanner(System.in);
 
+	/**
+	 * static function to read integers input from the user
+	 * @return integer values that are read
+	 */
 	public static int userInt(){
-		try{
 			return s.nextInt();
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		return 0;
 	}
 	
+	/**
+	 * static function to read double input from the user
+	 * @return double values that are read
+	 */
 	public static double userDouble(){
-		try{
 			return s.nextDouble();
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		return 0;
 	}
 	
+	/**
+	 * static function to read boolean input from the user
+	 * @return boolean values that are read
+	 */
 	public static boolean userBoolean(){
-		try{
 			return s.nextBoolean();
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		return true;
 	}
 	
+	/**
+	 * static function to read string input from the user
+	 * @return strings that are read
+	 */
 	public static String userString(){
-		try{
 			return s.next();
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		return null;
 	}
 	
+	/**
+	 *Static function to check if the two strings are anagram or not.
+	 * 
+	 * @param str1 the string to be checked for anagram
+	 * @param str2 the string to be checked for anagram
+	 * @return true if the strings are anagram else false
+	 */
 	public static boolean isAnagram(String str1,String str2) {
-		char[] n_str1=str1.toLowerCase().toCharArray();
-		char[] n_str2=str2.toLowerCase().toCharArray();
+		char[] n_str1=str1.toCharArray();
+		char[] n_str2=str2.toCharArray();
 		int len1=n_str1.length;
 		int len2=n_str2.length;
 		if(len1!=len2) {
 			return false;
 		}
 		else{
+			
+			//Sorts the array
 			Arrays.sort(n_str1);
 			Arrays.sort(n_str2);
+			
+			//After sorting, converting the array back to strings
 			str1=String.valueOf(n_str1);
 			str2=String.valueOf(n_str2);
-			if(str1.equals(n_str2))
+			
+			//If the two strings are equal then return true else
+			//return false
+			if(str1.equals(str2))
 				return true;
 			else
 				return false;
 		}	
 	}
 	
-	public static void primeNumbers(int m,int n) {
+	/**
+	 *static function to print the prime numbers for the given range
+	 * 
+	 * @param m the integer that represents the lower bound of the range
+	 * @param n the integer that represents the upper bound of the range
+	 * @return list of integers that are prime numbers between the range
+	 */
+	public static List<Integer> primeNumbers(int m,int n) {
+		List<Integer> lst=new ArrayList<Integer>();
 		int temp;
+		
+		//swapping of bounds if the given lower bound is greater than upper bound
 		if(m>n) {
 			temp=m;
 			m=n;
 			n=temp;
 		}
 		int flag=1;
+		
+		//try all the possible values from lower bound to upper bound
+		//if the number has the factor then it must be checked within lower bound
 		for(int i=m;i<=n;i++){
 			for(int j=2;j<i;j++){
+				
+				//If the number is divisible by any of the number then 
+				//initializing flag to zero and break
+				//else flag is initialized to one
 				if(i%j==0)
 				{
 					flag=0;
@@ -95,15 +130,29 @@ public class AlgorithmUtility{
 				else
 					flag=1;
 			}
+			
+			//If the number is prime which is indicated by the flag,
+			//then adds the number into an ArrayList.
 			if(flag==1)
 			{
-				System.out.print(i + " ");
+				lst.add(i);
 			}
-		}
+		}//End of Loop
+		return lst;
 	}
 	
-	public static void bubbleSort(int[] array,int n) {
+	/**
+	 * static function to sort the array using bubble sort algorithm
+	 * 
+	 * @param array the array of integers that is to be sorted
+	 * @param n the number of integers in the array
+	 * @return integer array the array that is sorted
+	 */
+	public static int[] bubbleSort(int[] array,int n) {
 		int temp;
+		
+		//iterating through the whole array and swapping the adjacent 
+		//elements only if the former one is greater than latter one
 		for(int i=0;i<n;i++) {
 			for(int j=0;j<n-1;j++) {
 				if(array[j]>array[j+1]) {
@@ -112,32 +161,43 @@ public class AlgorithmUtility{
 					array[j+1]=temp;
 				}
 			}
-		}
-		System.out.println("The sorted array are:");
-		for(int i=0;i<n;i++) {
-			System.out.println(array[i]);
-		}
+		}//End of Loop
+		return array;
 	}
 	
-	public static void insertionSort(String[] array,int num) {
+	/**
+	 * static function to sort the given array of strings using insertion sort
+	 * 
+	 * @param array the array of strings that is to be sorted 
+	 * @param num the number of strings to be sorted
+	 * @return array the array of strings that are sorted
+	 */
+	public static String[] insertionSort(String[] array,int num) {
 		String temp;
 		for(int i=1;i<num;i++) {
 			temp=array[i];
 			int j;
 			j=i-1;
+			
+			//Since the contents of the array are strings, we
+			//use compareTo function of the String class to 
+			//compare the strings.
 			while(j>=0 && array[j].compareTo(temp)>0){
 				array[j+1]=array[j];
 				j=j-1;
 			}
 			array[j+1]=temp;
 		}
-		System.out.println("The sorted array are:");
-		for(int i=0;i<array.length;i++) {
-			System.out.println(array[i]);
-		}
+		return array; 
 	}
 	
-	public static void vendingMachine(int[] notes,int amt) {
+	/**
+	 * 
+	 * @param notes the array of possible notes in integers
+	 * @param amt the amount that you need change for
+	 * @return integer the minimum changes needed for the amount entered
+	 */
+	public static int vendingMachine(int[] notes,int amt) {
 		int cash=amt;
 		int temp=0;
 		for(int i=0;i<notes.length;i++)
@@ -155,27 +215,40 @@ public class AlgorithmUtility{
 				
 			}
 		}
-		System.out.println("The minimum notes required is:"+temp);
+		return temp;
 	}
 	
-	public static void temperatureConversion(int choice,double temp) {
+	/**
+	 * static function that converts given temperature from celcius to fahrenheit 
+	 * and vice versa
+	 * 
+	 * @param choice the choice to which temperature the user wants to convert to
+	 * @param temp the temperature to be converted
+	 * @return temperature that is converted
+	 */
+	public static double temperatureConversion(int choice,double temp) {
 		double f_temp,c_temp;
 		switch(choice){
-			case 1: System.out.println("Your input is in celcius");
+			case 1: System.out.println("Your input is in celcius so your fahrenheit temp is:");
 			 		f_temp=(temp*(9/5))+32;
-			 		System.out.println("The fahrenheit temp for your temp: "+f_temp);
-			 		break;
+			 		return f_temp;
 			 		
-			case 2: System.out.println("Your input is in celcius");
+			case 2: System.out.println("Your input is in fahrenheit then your celcius temp is:");
 	 				c_temp=(temp-32)*(5/9);
-	 				System.out.println("The fahrenheit temp for your temp: "+c_temp);
-	 				break;
+	 				return c_temp;
 	 				
-	 		default: System.out.println("Invalid choice");
-	 				 break;
+	 		default: return 0;
 		}
 	}
 	
+	/**
+	 * static function that calculates the monthly payment
+	 * 
+	 * @param principle the principle amount taken loan 
+	 * @param year the years to pay off
+	 * @param rate the interest rate 
+	 * @return monthly payment 
+	 */
 	public static double monthlyPayment(int principle,int year,double rate) {
 		int num=12*year;
 		double rt=(rate)/(12*100);
@@ -183,7 +256,12 @@ public class AlgorithmUtility{
 		
 	}
 	
-	public static void squareRoot(double num) {
+	/**
+	 * static function that calculates the square root of a given number
+	 * 
+	 * @param num the number whose square root is to be found
+	 */
+	public static double squareRoot(double num) {
 		double temp=num;
 		double epsilon=1e-15;
 		if(num>0) {
@@ -191,20 +269,34 @@ public class AlgorithmUtility{
 			temp=(num/temp+temp)/2;
 			}
 		}
-		System.out.println("The square root of the given number using Newton's Method is: "+ temp);
+		return temp;
 	}
 	
-	public static String toBinary(int num) {
-		String bin=" ";
-		int rem;
+	/**
+	 * static function that converts decimal to binary 
+	 * 
+	 * @param num the number that is to be converted to binary
+	 * @return array the array of integers that contains binary bits of the number
+	 */
+	public static int[] toBinary(int num){
+		int[] bin=new int[8];
+		int i=0;
 		do{
-			rem=num%2;
-			bin=rem+bin;
+			bin[i]=num%2;
 			num=num/2;
+			i++;
 		}while(num!=0);
 		return bin;
 	}
 	
+	/**
+	 * static function that finds the day of the week provided date 
+	 * 
+	 * @param month the numeric representation the of month
+	 * @param date the numeric representation the of date
+	 * @param year the numeric representation the of year
+	 * @return integer the numeric representation of the day 
+	 */
 	public static int dayOfWeek(int month,int date,int year) {
 		int year1=year-(14-month)/12;
 		int x=year1+(year1/4)-(year1/100)+(year1/400);
@@ -213,7 +305,11 @@ public class AlgorithmUtility{
 		return date1;
 	}
 	
-	//Methods for SSPerformance.java 
+	/**
+	 * static function that sorts the given array using bubble sort algorithm
+	 * 
+	 * @param array the array of integers or strings to be sorted
+	 */
 	public static void bubbleSortGeneric(String[] array) {
 		String temp;
 		for(int i=0;i<array.length;i++) {
@@ -231,6 +327,12 @@ public class AlgorithmUtility{
 		}
 	}
 	
+	/**
+	 * static function that sorts the given array using insertion sort
+	 * 
+	 * @param array the array of integers or strings that is to be sorted
+	 * @param num the number of integers to be sorted
+	 */
 	public static void insertionSortGeneric(String[] array,int num) {
 		String temp;
 		for(int i=1;i<num;i++) {
@@ -250,9 +352,13 @@ public class AlgorithmUtility{
 	}
 	
 	/**
-	 * @param array
-	 * @param key
-	 * @return
+	 * static function that search for the given key in a array using 
+	 * binary search algorithm
+	 * 
+	 * @param array the array of integers or strings from which key is to
+	 * 				be found
+	 * @param key the key to be searched in the array
+	 * @return index the index of the key, found in the array
 	 */
 	public static int binarySearchGeneric(String[] array,String key){
 		int low=0,high=array.length-1;
@@ -273,6 +379,14 @@ public class AlgorithmUtility{
 		return -1;
 	}
 	
+	/**
+	 * static function to merge the sorted arrays obtained from the 
+	 * merge function.
+	 * 
+	 * @param array the array of strings that are needed to be sorted
+	 * @param low the lower bound of the array 
+	 * @param high the higher bound of the array
+	 */
 	public static void mergeSort(String[] array,int low,int high){
 		int mid;
 		if(low<high){
@@ -283,6 +397,15 @@ public class AlgorithmUtility{
 		}
 	}
 	
+	/**
+	 * static function that sorts the array of strings by dividing the
+	 * array into sub arrays 
+	 * 
+	 * @param array the array of strings that are needed to be sorted
+	 * @param low the lower bound of the array 
+	 * @param mid the mid index of the array
+	 * @param high the higher bound of the array
+	 */
 	public static void merge(String[] array,int low,int mid,int high){
 		int n1=mid-low+1;
 		int n2=high-mid;
@@ -318,6 +441,11 @@ public class AlgorithmUtility{
 		}
 	}
 	
+	/**
+	 * static function that is used to print the array
+	 * 
+	 * @param array the array to be printed
+	 */
 	public static void print(String [] array)
 	{
 		for(int i=0;i<array.length;i++)
@@ -326,6 +454,14 @@ public class AlgorithmUtility{
 		}
 	}
 	
+	/**
+	 * static function that finds the number N that is guessed between the 
+	 * range of numbers such that the range is 2 to the power of N 
+	 * 
+	 * @param low the lower bound among the range of the numbers 
+	 * @param high the upper bound among the range of the numbers
+	 * @return number the number that is guessed among the range of numbers
+	 */
 	public static int findNumber(int low,int high){
 		int mid=(low+high)/2;
 		if((high-low)==1){
@@ -348,6 +484,11 @@ public class AlgorithmUtility{
 		}while(low<=high);
 	}
 	
+	/**
+	 * static function that is used to sort the array
+	 * 
+	 * @param array the array that is needed to be sorted
+	 */
 	public static void sort(String[] array) {
 		String temp;
 		for(int i=0;i<array.length;i++) {
@@ -361,23 +502,82 @@ public class AlgorithmUtility{
 		}
 	}
 	
-	public static String swapNibble(String bin){
-		char[] str_bin=bin.toCharArray();
-		int low=0;
-		char temp;
-		int high=str_bin.length-1;
-		int mid=(high+low)/2;
-		int i=0,j=mid+1;
-		while(i<=mid && j<=high){
-			temp=str_bin[i];
-			str_bin[i]=str_bin[j];
-			str_bin[j]=str_bin[i];
-			i++;
-			j++;
+	/**
+	 * static function that used to swap nibble of a byte
+	 * 
+	 * @param number number to be swapped
+	 * @return integer integer that is swapped
+	 */
+	public static int swapNibble(int num){
+		return ((num & 0x0F) << 4 | (num & 0xF0) >> 4); 
 		}
-		return String.valueOf(str_bin);
-		
-		
-		
+	
+	/**
+	 * static function that is used to add prime numbers that are
+	 * anagram 
+	 * 
+	 * @param new_lst the list of prime numbers 
+	 * @return set of prime numbers that are anagram
+	 */
+	public static Set<String> anagramPrime(List<String> new_lst){
+		Set<String> set=new HashSet<>();
+		for(int i=0;i<new_lst.size();i++){
+			for(int j=i+1;j<new_lst.size();j++){
+				if(isAnagram(new_lst.get(i), new_lst.get(j))){
+					set.add(new_lst.get(i));
+					set.add(new_lst.get(j));
+					System.out.println(new_lst.get(i)+"  "+new_lst.get(j));
+				}
+			}
+		}
+		return set;
 	}
+	
+	/**
+	 * static function that is used to add prime numbers that are 
+	 * anagram and palindrom
+	 * 
+	 * @param set the set of prime numbers that are anagram
+	 * @return set the set of prime numbers that are anagram and palindrom
+	 */
+	public static Set<String> palindromPrime(Set<String> set){
+		Set<String> pal_set=new HashSet<>();
+		Iterator<String> itr=set.iterator();
+		while(itr.hasNext()){
+			String str=itr.next();
+			if(isPalindrom(str)){
+				pal_set.add(str);
+			}
+		}
+		return pal_set;
+	}
+	
+	/**
+	 * static function that is used to check if the passed string 
+	 * is a palindrom or not 
+	 * 
+	 * @param str the string that is to be checked if it is a palindrom 
+	 * 				or not
+	 * @return true if the string is palindrom else false
+	 */
+	public static boolean isPalindrom(String str){
+		char temp;
+		int begin=0;
+		int end=str.length()-1;
+		String rev_str=str;
+		char[] array=str.toCharArray();
+		while(begin<=end){
+			temp=array[begin];
+			array[begin]=array[end];
+			array[end]=temp;
+			begin++;
+			end--;
+		}
+		String new_str=String.valueOf(array);
+		if(rev_str.equals(new_str))
+			return true;
+		else
+			return false;
+	}
+		
 }

@@ -13,7 +13,6 @@
 package com.bridgelabz.algorithmprogram;
 
 import com.bridgelabz.util.AlgorithmUtility;
-import java.util.Scanner;
 
 public class ToBinary {
 
@@ -22,16 +21,18 @@ public class ToBinary {
 	* call the toBinary function that converts decimal to binary
 	*/
 	public static void main(String[] args) {
-		Scanner s=new Scanner(System.in);
 		System.out.println("Enter the decimal number to be converted");
 		
 		//Reading the input from the user
-		int num=s.nextInt();
+		int num=AlgorithmUtility.userInt();
 		
 		//Method 1- using static function of AlgorithmUtility class of
 		//com.bridgelabz.util package
-		String bin=AlgorithmUtility.toBinary(num);
-		System.out.println("The binary form of the number is: "+bin);
-		s.close();
+		int[] bin=AlgorithmUtility.toBinary(num);
+		
+		for(int i=bin.length;i>0;i--)
+			System.out.print(bin[i]);
+		
 	}
+		
 }

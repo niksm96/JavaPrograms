@@ -13,7 +13,6 @@
 package com.bridgelabz.algorithmprogram;
 
 import com.bridgelabz.util.AlgorithmUtility;
-import java.util.Scanner;
 
 public class AnagramDetection {
 	
@@ -23,13 +22,12 @@ public class AnagramDetection {
 */
     
 	public static void main(String[] args) {
-		Scanner s=new Scanner(System.in);
 		System.out.println("Enter a string");
 		
 		//Reading input two input strings from user
-		String str1=s.nextLine();
+		String str1=AlgorithmUtility.userString();
 		System.out.println("Enter another string to detect anagram");
-		String str2=s.nextLine();
+		String str2=AlgorithmUtility.userString();
 		
 		//Method 1- using static function of AlgorithmUtility class of
 		//com.bridgelabz.util package
@@ -39,6 +37,5 @@ public class AnagramDetection {
 		}
 		else
 			System.out.println("The strings are not anagram");
-		s.close();
 	}
 }
