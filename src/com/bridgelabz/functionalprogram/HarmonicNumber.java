@@ -12,6 +12,8 @@
 
 package com.bridgelabz.functionalprogram;
 
+import java.util.Scanner;
+
 import com.bridgelabz.util.FunctionalUtilty;
 
 public class HarmonicNumber {
@@ -22,12 +24,18 @@ public class HarmonicNumber {
 	*/
 	public static void main(String[] args) {
 		System.out.println("Enter the value for n");
-		FunctionalUtilty fu=new FunctionalUtilty();
 		
+		//Reading the input from the user
+		Scanner s=new Scanner(System.in);
+		int n=s.nextInt();
+
 
 		//Method 1- using non-static function of FunctionalUtilty class
 		//of com.bridgelabz.util package
-		fu.harmonicValue();
+		double res=FunctionalUtilty.harmonicValue(n);
+		
+		System.out.println("The harmonic value is:" +res);
+		s.close();
 	}
 
 }

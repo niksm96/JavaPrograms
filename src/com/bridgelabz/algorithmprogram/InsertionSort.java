@@ -34,10 +34,8 @@ public class InsertionSort {
 		
 		//Method 1- using static function of AlgorithmUtility class of
 		//com.bridgelabz.util package
-		String[] res_str=AlgorithmUtility.insertionSort(str_array,num);
-		for(int i=0;i<num;i++) {
-			System.out.println(res_str[i]);
-		}
+		AlgorithmUtility.insertionSort(str_array,num);
+		
 		s.close();
 	}
 }

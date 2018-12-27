@@ -72,17 +72,11 @@ public class FunctionalUtilty<E> {
 			System.out.println("The value of n should be in the range of 0 to 31");
 	}
 	
-	public void harmonicValue(){
-		Scanner s=new Scanner(System.in);
-		int n=s.nextInt();
+	public static double harmonicValue(int n){
 		double sum=0;
-		do{
-			for(double i=1;i<=n;i++){
-				sum=sum+(1/i);
-			}
-		}while(n!=0);
-			System.out.println(sum);
-			s.close();
+		for(double i=1;i<=n;i++)
+			sum=sum+(1/i);
+		return sum;
 	}
 	
 	public void primeFactor(){
@@ -132,25 +126,20 @@ public class FunctionalUtilty<E> {
 		s.close();
 	}
 	
-	public void couponNumber(){
-		Scanner s=new Scanner(System.in);
+	public void couponNumber(int num){
 		Random r=new Random();
-		int num=s.nextInt();
-		int dist_num[]=new int[num];
-		int temp=0,count=0;
-		for(int i=0;i<num;i++){
+		int dist=0,count=0;
+		boolean coupon[]=new boolean[num];
+		while(dist<num){
 			int rand_num=r.nextInt(num);
 			count++;
-			if(temp!=rand_num)
-				dist_num[i]=rand_num;
-			temp=dist_num[i];
+			if(!coupon[rand_num]){
+				dist++;
+				System.out.println(dist);
+				coupon[rand_num]=true;
+			}
 		}
-		for(int i=0;i<num;i++){
-			System.out.print(dist_num[i]+" ");
-		}
-		System.out.println();
 		System.out.println("Number of random numbers needed:"+ count);
-		s.close();
 	}
 	
 	public void displayArray(E[][] garray){
