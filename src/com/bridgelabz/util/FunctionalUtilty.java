@@ -14,9 +14,27 @@
 package com.bridgelabz.util;
 
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public class FunctionalUtilty<E> {
+	
+	/**
+	 * player is a static variable that is initialized to 0
+	 */
+	static int player = 0;
+	
+	/**
+	 * BOARD is a static integer array whose size is 3x3 
+	 */
+	static int[][] BOARD = new int[3][3];
+	
+	/**
+	 * isEmpty is a static boolean variable that is initialized to 0
+	 */
+	static boolean isEmpty = true;
 
 	/**
 	 * static object is created for Scanner class to avoid
@@ -54,31 +72,6 @@ public class FunctionalUtilty<E> {
 	 */
 	public static String userString(){
 			return s.next();
-	}
-	
-	/**
-	 * permuteArray stores the array of possible permutation of a
-	 * string hence resulting in array of strings
-	 */
-	private String[] permuteArray;
-	
-	/**
-	 * index stores the varying index value of the array
-	 */
-	private int index = 0;
-	
-	/**
-	 * Default constructor 
-	 */
-	public FunctionalUtilty() {}
-	
-	/**
-	 * Constructor to take the input for fact
-	 * 
-	 * @param fact the number that represents factorial 
-	 */
-	public FunctionalUtilty(int fact) {
-		this.permuteArray = new String[fact];
 	}
 	
 	/**
@@ -159,8 +152,8 @@ public class FunctionalUtilty<E> {
 	
 	/**
 	 * 
-	 * @param n
-	 * @return
+	 * @param n the number of series for which harmonic value to be found
+	 * @return sum the value of the harmonic series
 	 */
 	public static double harmonicValue(int n){
 		double sum=0;
@@ -356,40 +349,173 @@ public class FunctionalUtilty<E> {
 		}
 	}
 	
-	/**
-	 * static function to find the permutation of a string recursively
-	 * 
-	 * @param array the array of characters 
-	 * @param startIndex the start index of the array
-	 * @param endIndex the end index of the array
-	 * @return array the array of strings that contains all the possible 
-	 * 				 permutation of the string.
-	 */
-	public String[] permute(char[] array, int startIndex, int endIndex) {
-        if(startIndex == endIndex){
-        	permuteArray[index++] = String.valueOf(array);
-           // System.out.println(String.valueOf(array)); 
-        }else{
-            for(int i=startIndex;i<=endIndex;i++) {
-                 swap(array, startIndex, i );
-                 permute(array, startIndex+1, endIndex);
-                 swap(array, startIndex, i );
-            }
-        }
-		return permuteArray;
-    }
+		/**
+		 * @param str string whose permutations are to be found
+		 * @param start the lower bound 
+		 * @param end the upper bound
+		 */
+		public static List<String> recursion(String str, int start, int end,List<String> array) {
+			
+			if (start == end) {
+				array.add(str);
+			} else {
+				for (int i = start; i < end; i++) {
+					str = swap(str, start, i);
+					recursion(str, (start + 1), end,array);
+				}
+			}
+			return array;
+		}
+
+		/**
+		 * @param str the string to be sorted
+		 * @param i the index
+		 * @param j another index
+		 * @return string whose characters are swapped
+		 */
+		public static String swap(String str, int i, int j) {
+			char temp;
+			char[] ch = str.toCharArray();
+			temp = ch[i];
+			ch[i] = ch[j];
+			ch[j] = temp;
+			return String.valueOf(ch);
+
+		}
+
+		/**
+		 * @param s the string whose permutation is to be found
+		 */
+		public static List<String> iteration(String str) {
+			List<String> array = new ArrayList<>();
+			array.add(String.valueOf(str.charAt(0)));
+			for (int i = 1; i < str.length(); i++) {
+				for (int j = array.size() - 1; j >= 0; j--) {
+					String s = array.remove(j);
+					for (int k = 0; k <= s.length(); k++) {
+						array.add(s.substring(0, k) + str.charAt(i) + s.substring(k));
+					}
+				}
+			}
+			return array;
+		}
+		
+		/**
+		 * @param array the array which is to be sorted
+		 * @return arraylist that contains sorted strings
+		 */ 
+		public static List<String> listSort(List<String> array)
+		{
+			Collections.sort(array);
+			return array;
+		}	
 	
-	/**
-	 * static function that is used to swap the elements in a array
-	 * 
-	 * @param array
-	 * @param x
-	 * @param y
-	 */
-	public static void swap(char[] array, int x, int y) {
-        char temp = array[x];
-        array[x] = array[y];
-        array[y] = temp;
-    }
-	
+		
+		/**
+		 * static function that is used to initialize the BOARD
+		 */
+		public static void initBoard() {
+			System.out.println("TIC TAC TOE GAME\nComputer is x\nPlayer  is 0 ");
+			for (int i = 0; i < BOARD.length; i++) {
+				for (int j = 0; j < BOARD[i].length; j++) {
+					BOARD[i][j] = -10;
+				}
+			}
+			System.out.println("Board is this :");
+			dispBoard();
+		}
+		
+		/**
+		 * static function that is used to display the board
+		 */
+		public static void dispBoard() {
+			int count = 0;
+			for (int i = 0; i < BOARD.length; i++) {
+				System.out.println("---------------");
+				System.out.print("||");
+				for (int j = 0; j < BOARD[i].length; j++) {
+					if (BOARD[i][j] == 0) {
+						count++;
+						System.out.print(" o ||");
+					} else if (BOARD[i][j] == 1) {
+						count++;
+						System.out.print(" x ||");
+					} else
+						System.out.print("   ||");
+				}
+				System.out.println(" ");
+			}
+			if (count == 9) {
+				isEmpty = false;
+			}
+			System.out.println("---------------");
+		}
+		
+		/**
+		 * static function that is used to enter 'X' or '0' into the board
+		 */
+		public static void putVal() {
+			int i;
+			int j;
+			if (player % 2 == 1) {
+				i = (int) (Math.random() * 10) % 3;
+				j = (int) (Math.random() * 10) % 3;
+			} else {
+				@SuppressWarnings("resource")
+				Scanner s = new Scanner(System.in);
+				System.out.println("enter value of x and y by space");
+				i = s.nextInt();
+				j = s.nextInt();
+			}
+			if (BOARD[i][j] == -10) {
+				if (player % 2 == 0) {
+					BOARD[i][j] = 0;
+				} else {
+					BOARD[i][j] = 1;
+					System.out.println("Coumputer Choosing " + i + " " + j);
+				}
+			} else
+				putVal();
+
+		}
+		
+		/**
+		 * static function that determines the winner of the game
+		 * @return true if won else false
+		 */
+		public static boolean win() {
+			return ((BOARD[0][0] + BOARD[0][1] + BOARD[0][2] == player * 3)
+					|| (BOARD[1][0] + BOARD[1][1] + BOARD[1][2] == player * 3)
+					|| (BOARD[2][0] + BOARD[2][1] + BOARD[2][2] == player * 3)
+					|| (BOARD[0][0] + BOARD[1][0] + BOARD[2][0] == player * 3)
+					|| (BOARD[0][1] + BOARD[1][1] + BOARD[2][1] == player * 3)
+					|| (BOARD[0][2] + BOARD[1][2] + BOARD[2][2] == player * 3)
+					|| (BOARD[0][0] + BOARD[1][1] + BOARD[2][2] == player * 3)
+					|| (BOARD[2][0] + BOARD[1][1] + BOARD[0][2] == player * 3));
+		}
+
+		/**
+		 * static function that has the definition to play the game
+		 */
+		public static void play() {
+			initBoard();
+			while (isEmpty) {
+				System.out.println("Players turn");
+				putVal();
+				dispBoard();
+				if (win()) {
+					System.out.println("Player won");
+					return;
+				}
+				player = 1;
+				System.out.println("Computers turn");
+				putVal();
+				dispBoard();
+				if (win()) {
+					System.out.println("Computer won");
+					return;
+				}
+				player = 0;
+			}
+		}
 }
