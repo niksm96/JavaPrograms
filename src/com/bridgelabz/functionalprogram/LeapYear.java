@@ -23,11 +23,17 @@ public class LeapYear {
 	*/
 	public static void main(String[] args) {
 			System.out.println("Enter year");
-			FunctionalUtilty fu=new FunctionalUtilty();
+			
+			//Reading input from the user
+			int year=FunctionalUtilty.userInt();
 			
 			//Method 1- using non-static function of FunctionalUtilty class
 			//of com.bridgelabz.util package
-			fu.leapYear();
+			boolean rs=FunctionalUtilty.leapYear(year);
+			if(rs)
+				System.out.println(year + "  is a leap year");
+			else
+				System.out.println(year + "  is not a leap year");
 		}
 
 

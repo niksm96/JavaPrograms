@@ -15,7 +15,6 @@
 package com.bridgelabz.functionalprogram;
 
 import com.bridgelabz.util.FunctionalUtilty;
-import java.util.Scanner;
 
 public class PermutationString {
 	
@@ -25,17 +24,16 @@ public class PermutationString {
 	* by two methods
 	*/
 	public static void main(String[] args) {
-		Scanner s=new Scanner(System.in);
 		System.out.println("Enter string");
 		
 		//Reading the input from the user
-		String str=s.nextLine();
+		String str=FunctionalUtilty.userString();
 		char array[]=str.toCharArray();
 		int endIndex=str.length()-1;
 		int startIndex=0;
-		FunctionalUtilty fu=new FunctionalUtilty(50);
 		
-
+		FunctionalUtilty<Object> fu=new FunctionalUtilty<>(endIndex*(endIndex-1));
+	
 		//Method 1- using non-static function of FunctionalUtilty class
 		//of com.bridgelabz.util package
 		String[] array1 = fu.permute(array, startIndex, endIndex);
@@ -44,6 +42,5 @@ public class PermutationString {
 		for (String string : array1) {
 			System.out.println(string);
 		}
-		s.close();
 	}
 }

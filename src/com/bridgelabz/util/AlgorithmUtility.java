@@ -17,9 +17,14 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class AlgorithmUtility{
 	
@@ -77,17 +82,10 @@ public class AlgorithmUtility{
 			return false;
 		}
 		else{
-			
-			//Sorts the array
 			Arrays.sort(n_str1);
 			Arrays.sort(n_str2);
-			
-			//After sorting, converting the array back to strings
 			str1=String.valueOf(n_str1);
 			str2=String.valueOf(n_str2);
-			
-			//If the two strings are equal then return true else
-			//return false
 			if(str1.equals(str2))
 				return true;
 			else
@@ -105,23 +103,14 @@ public class AlgorithmUtility{
 	public static List<Integer> primeNumbers(int m,int n) {
 		List<Integer> lst=new ArrayList<Integer>();
 		int temp;
-		
-		//swapping of bounds if the given lower bound is greater than upper bound
 		if(m>n) {
 			temp=m;
 			m=n;
 			n=temp;
 		}
 		int flag=1;
-		
-		//try all the possible values from lower bound to upper bound
-		//if the number has the factor then it must be checked within lower bound
 		for(int i=m;i<=n;i++){
 			for(int j=2;j<i;j++){
-				
-				//If the number is divisible by any of the number then 
-				//initializing flag to zero and break
-				//else flag is initialized to one
 				if(i%j==0)
 				{
 					flag=0;
@@ -130,14 +119,11 @@ public class AlgorithmUtility{
 				else
 					flag=1;
 			}
-			
-			//If the number is prime which is indicated by the flag,
-			//then adds the number into an ArrayList.
 			if(flag==1)
 			{
 				lst.add(i);
 			}
-		}//End of Loop
+		}
 		return lst;
 	}
 	
@@ -150,9 +136,6 @@ public class AlgorithmUtility{
 	 */
 	public static int[] bubbleSort(int[] array,int n) {
 		int temp;
-		
-		//iterating through the whole array and swapping the adjacent 
-		//elements only if the former one is greater than latter one
 		for(int i=0;i<n;i++) {
 			for(int j=0;j<n-1;j++) {
 				if(array[j]>array[j+1]) {
@@ -161,7 +144,7 @@ public class AlgorithmUtility{
 					array[j+1]=temp;
 				}
 			}
-		}//End of Loop
+		}
 		return array;
 	}
 	
@@ -178,10 +161,6 @@ public class AlgorithmUtility{
 			temp=array[i];
 			int j;
 			j=i-1;
-			
-			//Since the contents of the array are strings, we
-			//use compareTo function of the String class to 
-			//compare the strings.
 			while(j>=0 && array[j].compareTo(temp)>0){
 				array[j+1]=array[j];
 				j=j-1;
@@ -579,5 +558,34 @@ public class AlgorithmUtility{
 		else
 			return false;
 	}
-		
+	
+	/**
+	 * 
+	 * @param elapsed_time the map that contains [key, pair] values that
+	 * 		  represents algorithm and its elapsed time respectively.
+	 * @return map that contains the sorted map of [key,pair] values that are sorted
+	 * 			by values
+	 */
+	public static Map<String,Double> sortByValue(Map<String, Double> elapsed_time){
+		//Creating a list from the hashmap
+		 List<Map.Entry<String, Double> > list = 
+	               new LinkedList<Map.Entry<String, Double> >(elapsed_time.entrySet()); 
+		 
+		 //Sort the list 
+		 Collections.sort(list, new Comparator<Map.Entry<String, Double>>() {
+
+			@Override
+			public int compare(Map.Entry<String, Double> o1, Map.Entry<String, Double> o2) {
+				return (o1.getValue()).compareTo(o2.getValue());
+			}
+		});
+		 
+		// put data from sorted list to hashmap  
+		Map<String, Double> temp = new LinkedHashMap<String, Double>(); 
+	        for (Map.Entry<String, Double> hmap : list) { 
+	            temp.put(hmap.getKey(), hmap.getValue()); 
+	        } 
+	        return temp;
+	}
+	
 }

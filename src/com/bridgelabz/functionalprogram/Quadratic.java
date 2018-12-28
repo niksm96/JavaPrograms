@@ -13,7 +13,6 @@
 package com.bridgelabz.functionalprogram;
 
 import com.bridgelabz.util.FunctionalUtilty;
-import java.util.Scanner;
 
 public class Quadratic {
 
@@ -22,24 +21,18 @@ public class Quadratic {
 	* call quadratic function that find roots of the equation.
 	*/
 	public static void main(String[] args) {
-		Scanner s=new Scanner(System.in);
-		
 		//Reading the inputs from the user
 		System.out.println("Equation of the form: a*x*x+b*x+c");
 		System.out.println("Enter the value for a");
-		int a=s.nextInt();
+		int a=FunctionalUtilty.userInt();
 		System.out.println("Enter the value for b");
-		int b=s.nextInt();
+		int b=FunctionalUtilty.userInt();
 		System.out.println("Enter the value for c");
-		int c=s.nextInt();
-		
-		FunctionalUtilty fu=new FunctionalUtilty();
+		int c=FunctionalUtilty.userInt();
 		
 		//Method 1- using non-static function of FunctionalUtilty class
 		//of com.bridgelabz.util package
-		fu.quadratic(a,b,c);
-		
-		s.close();
+		FunctionalUtilty.quadratic(a,b,c);
 	}
 
 }

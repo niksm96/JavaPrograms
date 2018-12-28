@@ -13,8 +13,8 @@
 
 package com.bridgelabz.functionalprogram;
 
+import com.bridgelabz.util.AlgorithmUtility;
 import com.bridgelabz.util.FunctionalUtilty;
-import java.util.Scanner;
 
 public class TwoDArray {
 	
@@ -23,24 +23,23 @@ public class TwoDArray {
 	* call displayArray function that displays array of any type
 	*/
 	public static void main(String[] args) {
-		Scanner s=new Scanner(System.in);
-		FunctionalUtilty fu=new FunctionalUtilty();
+		FunctionalUtilty<Object> fu=new FunctionalUtilty<Object>();
 		
 		//Reading the input from the user
 		System.out.println("Enter the number of rows: m");
-		int m=s.nextInt();
+		int m=FunctionalUtilty.userInt();
 		System.out.println("Enter the number of columns: n");
-		int n=s.nextInt();
+		int n=FunctionalUtilty.userInt();
 		System.out.println("1:Integer  2:Double  3:Boolean");
 		
 		//Reading the choice of the user
-		int choice=s.nextInt();
+		int choice=FunctionalUtilty.userInt();
 		
 		switch(choice){
 			case 1: Integer[][] array=new Integer[m][n];
 					for(int i=0;i<m;i++){
 						for(int j=0;j<n;j++){
-							array[i][j]=s.nextInt();
+							array[i][j]=AlgorithmUtility.userInt();
 						}
 					}
 
@@ -53,7 +52,7 @@ public class TwoDArray {
 			case 2: Double[][] darray=new Double[m][n];
 					for(int i=0;i<m;i++){
 						for(int j=0;j<n;j++){
-							darray[i][j]=s.nextDouble();
+							darray[i][j]=FunctionalUtilty.userDouble();
 						}
 					}
 					
@@ -67,7 +66,7 @@ public class TwoDArray {
 			case 3: Boolean[][] barray=new Boolean[m][n];
 					for(int i=0;i<m;i++){
 						for(int j=0;j<n;j++){
-							barray[i][j]=s.nextBoolean();
+							barray[i][j]=FunctionalUtilty.userBoolean();
 						}
 					}
 					
@@ -81,7 +80,6 @@ public class TwoDArray {
 			default: System.out.println("Select among the choices"); 
 					 break;
 		}
-		s.close();
 	}
 
 }

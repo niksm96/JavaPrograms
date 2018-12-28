@@ -21,11 +21,14 @@ public class SumZero {
 	* number of triples that sum to exactly 0.
 	*/
 	public static void main(String[] args) {
-		FunctionalUtilty fu=new FunctionalUtilty();
+		System.out.println("Enter the number of integers");
+		
+		//Reading the input from the user
+		int num=FunctionalUtilty.userInt();
 		
 		//Method 1- using non-static function of FunctionalUtilty class
 		//of com.bridgelabz.util package
-		fu.sumZero();
+		FunctionalUtilty.sumZero(num);
 
 	}
 

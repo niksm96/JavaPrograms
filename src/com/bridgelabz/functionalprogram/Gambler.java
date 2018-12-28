@@ -24,11 +24,18 @@ public class Gambler {
 	* call gambler function that calculate win and lose percentage
 	*/
 	public static void main(String[] args) {
-		FunctionalUtilty fu=new FunctionalUtilty();
+		
+		//Reading input from the user
+		System.out.println("Enter the stake");
+		int stake=FunctionalUtilty.userInt();
+		System.out.println("Enter the goal");
+		int goal=FunctionalUtilty.userInt();
+		System.out.println("Enter the number of times to gamble");
+		int no_of_times=FunctionalUtilty.userInt();
 		
 		//Method 1- using non-static function of FunctionalUtilty class
 		//of com.bridgelabz.util package
-		fu.gambler();
+		FunctionalUtilty.gambler(stake,goal,no_of_times);
 		
 		
 	}

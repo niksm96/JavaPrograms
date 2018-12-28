@@ -13,8 +13,6 @@
 
 package com.bridgelabz.functionalprogram;
 
-import java.util.Scanner;
-
 import com.bridgelabz.util.FunctionalUtilty;
 
 public class CouponNumber {
@@ -27,18 +25,14 @@ public class CouponNumber {
 	public static void main(String[] args) {
 		System.out.println("Enter the number of coupons to be generated");
 		
-		Scanner s=new Scanner(System.in);
-		
 		//Reading input number from the user
-		int num=s.nextInt();
-		
-		FunctionalUtilty fu=new FunctionalUtilty();
+		int num=FunctionalUtilty.userInt();
 		
 		//Method 1- using non-static function of FunctionalUtilty class
 		//of com.bridgelabz.util package
-		fu.couponNumber(num);
+		int res=FunctionalUtilty.couponNumber(num);
 		
-		s.close();
+		System.out.println("Number of random numbers needed:"+ res);
 		
 	}
 }

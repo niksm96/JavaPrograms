@@ -23,10 +23,15 @@ public class StopWatch {
 	*/
 	public static void main(String[] args) {
 		System.out.println("Enter true to start and false to end");
-		FunctionalUtilty fu=new FunctionalUtilty();
+		
+		//Reading input from the user
+		boolean start_end=FunctionalUtilty.userBoolean();
+		
+		System.out.println("Enter 0 to end");
+		int end=FunctionalUtilty.userInt();
 		
 		//Method 1- using non-static function of FunctionalUtilty class
 		//of com.bridgelabz.util package
-		fu.stopWatch();
+		FunctionalUtilty.stopWatch(start_end,end);
 	}
 }

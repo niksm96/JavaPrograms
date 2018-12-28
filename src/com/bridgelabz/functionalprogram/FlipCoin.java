@@ -23,11 +23,12 @@ public class FlipCoin {
 	*/
 	public static void main(String[] args) {
 		System.out.println("Enter the number of times the coin is being flipped");
-		FunctionalUtilty fu=new FunctionalUtilty();
+		
+		int num=FunctionalUtilty.userInt();
 		
 		//Method 1- using non-static function of FunctionalUtilty class
 		//of com.bridgelabz.util package
-		fu.perHeadTail();
+		FunctionalUtilty.perHeadTail(num);
 		
 	}
 

@@ -13,7 +13,6 @@
 package com.bridgelabz.functionalprogram;
 
 import com.bridgelabz.util.FunctionalUtilty;
-import java.util.Scanner;
 
 public class Distance {
 
@@ -22,22 +21,19 @@ public class Distance {
 	* call distance function that calculates the euclidean distance
 	*/
 	public static void main(String[] args) {
-		Scanner s=new Scanner(System.in);
-		
 		//Reading inputs from the user
 		System.out.println("Enter x");
-		int x=s.nextInt();
+		int x=FunctionalUtilty.userInt();
 		System.out.println("Enter y");
-		int y=s.nextInt();
-		
-		FunctionalUtilty fu=new FunctionalUtilty();
+		int y=FunctionalUtilty.userInt();
 		
 		//Method 1- using non-static function of FunctionalUtilty class
 		//of com.bridgelabz.util package
-		double dist=fu.distance(x,y);
+		double dist=FunctionalUtilty.distance(x,y);
+		
+		System.out.println("The distance is "+dist);
 		
 		System.out.println(dist);
-		s.close();
 	}
 
 }

@@ -14,7 +14,6 @@
 package com.bridgelabz.functionalprogram;
 
 import com.bridgelabz.util.FunctionalUtilty;
-import java.util.Scanner;
 
 public class PowerOf2 {
 
@@ -23,19 +22,14 @@ public class PowerOf2 {
 	* call powerOf2 function that prints the table of the powers of 2
 	*/
 	public static void main(String[] args) {
-		Scanner s=new Scanner(System.in);
 		System.out.println("Enter the value for n");
 		
 		//Reading the input from the user
-		int n=s.nextInt();
-		
-		FunctionalUtilty fu=new FunctionalUtilty();
+		int n=FunctionalUtilty.userInt();
 		
 		//Method 1- using non-static function of FunctionalUtilty class
 		//of com.bridgelabz.util package
-		fu.powerOf2(n);
-		
-		s.close();
+		FunctionalUtilty.powerOf2(n);
 	}
 
 }

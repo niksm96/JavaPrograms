@@ -14,7 +14,6 @@
 package com.bridgelabz.functionalprogram;
 
 import com.bridgelabz.util.FunctionalUtilty;
-import java.util.Scanner;
 
 public class WindChill {
 	
@@ -23,20 +22,16 @@ public class WindChill {
 	* call WindChill function that calculates the effective temperature
 	*/
 	public static void main(String[] args) {
-		Scanner s=new Scanner(System.in);
-		
 		//Reading the inputs from the user
 		System.out.println("Enter the temperature in Farenheit");
-		double temp=s.nextDouble();
+		double temp=FunctionalUtilty.userDouble();
 		System.out.println("Enter the speed of the wind");
-		double wind_speed=s.nextDouble();
-		
-		FunctionalUtilty fu=new FunctionalUtilty();
+		double wind_speed=FunctionalUtilty.userDouble();
 		
 		//Method 1- using non-static function of FunctionalUtilty class
 		//of com.bridgelabz.util package
-		fu.windChill(temp, wind_speed);
+		double res=FunctionalUtilty.windChill(temp, wind_speed);
 		
-		s.close();
+		System.out.println("The efficient temperature:"+ res);
 	}
 }

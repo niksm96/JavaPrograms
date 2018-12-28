@@ -23,10 +23,11 @@ public class PrimeFactors {
 	*/
 	public static void main(String[] args) {
 		System.out.println("Enter the number N");
-		FunctionalUtilty fu=new FunctionalUtilty();
+	
+		int num=FunctionalUtilty.userInt();
 		
 		//Method 1- using non-static function of FunctionalUtilty class
 		//of com.bridgelabz.util package
-		fu.primeFactor();
+		FunctionalUtilty.primeFactor(num);
 	}
 }
