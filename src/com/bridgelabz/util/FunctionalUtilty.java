@@ -27,9 +27,9 @@ public class FunctionalUtilty<E> {
 	static int player = 0;
 	
 	/**
-	 * BOARD is a static integer array whose size is 3x3 
+	 * MATRIX is a static integer array whose size is 3x3 
 	 */
-	static int[][] BOARD = new int[3][3];
+	static int[][] MATRIX = new int[3][3];
 	
 	/**
 	 * isEmpty is a static boolean variable that is initialized to 0
@@ -167,18 +167,12 @@ public class FunctionalUtilty<E> {
 	 * @param n the number whose prime factors are to be found
 	 */
 	public static void primeFactor(int n){
-		while(n%2==0){
-			System.out.println(2);
-			n=n/2;
-		}
-		for(int i=3;i<Math.sqrt(n);i+=2){
+		for(int i=2;i<=n;i++){
 			while(n%i==0){
 				System.out.println(i);
 				n=n/i;
 			}
 		}
-		if(n>2)
-			System.out.println(n);
 	}
 	
 	/**
@@ -402,7 +396,7 @@ public class FunctionalUtilty<E> {
 		
 		/**
 		 * @param array the array which is to be sorted
-		 * @return arraylist that contains sorted strings
+		 * @return array list that contains sorted strings
 		 */ 
 		public static List<String> listSort(List<String> array)
 		{
@@ -412,34 +406,34 @@ public class FunctionalUtilty<E> {
 	
 		
 		/**
-		 * static function that is used to initialize the BOARD
+		 * static function that is used to initialize the MATRIX
 		 */
-		public static void initBoard() {
-			System.out.println("TIC TAC TOE GAME\nComputer is x\nPlayer  is 0 ");
-			for (int i = 0; i < BOARD.length; i++) {
-				for (int j = 0; j < BOARD[i].length; j++) {
-					BOARD[i][j] = -10;
+		public static void initMatrix() {
+			System.out.println("TIC TAC TOE GAME: Computer is x and Player  is O");
+			for (int i = 0; i < MATRIX.length; i++) {
+				for (int j = 0; j < MATRIX[i].length; j++) {
+					MATRIX[i][j] = -1;
 				}
 			}
-			System.out.println("Board is this :");
-			dispBoard();
+			System.out.println("This is the Matrix");
+			displayMatrix();
 		}
 		
 		/**
-		 * static function that is used to display the board
+		 * static function that is used to display the MATRIX
 		 */
-		public static void dispBoard() {
+		public static void displayMatrix() {
 			int count = 0;
-			for (int i = 0; i < BOARD.length; i++) {
+			for (int i = 0; i < MATRIX.length; i++) {
 				System.out.println("---------------");
 				System.out.print("||");
-				for (int j = 0; j < BOARD[i].length; j++) {
-					if (BOARD[i][j] == 0) {
+				for (int j = 0; j < MATRIX[i].length; j++) {
+					if (MATRIX[i][j] == 0) {
 						count++;
-						System.out.print(" o ||");
-					} else if (BOARD[i][j] == 1) {
+						System.out.print(" O ||");
+					} else if (MATRIX[i][j] == 1) {
 						count++;
-						System.out.print(" x ||");
+						System.out.print(" X ||");
 					} else
 						System.out.print("   ||");
 				}
@@ -452,30 +446,34 @@ public class FunctionalUtilty<E> {
 		}
 		
 		/**
-		 * static function that is used to enter 'X' or '0' into the board
+		 * static function that is used to enter 'X' or '0' into the MATRIX
 		 */
-		public static void putVal() {
-			int i;
-			int j;
-			if (player % 2 == 1) {
-				i = (int) (Math.random() * 10) % 3;
-				j = (int) (Math.random() * 10) % 3;
-			} else {
-				@SuppressWarnings("resource")
-				Scanner s = new Scanner(System.in);
-				System.out.println("enter value of x and y by space");
-				i = s.nextInt();
-				j = s.nextInt();
-			}
-			if (BOARD[i][j] == -10) {
-				if (player % 2 == 0) {
-					BOARD[i][j] = 0;
+		public static void addValue() {
+			try{
+				int i;
+				int j;
+				if (player % 2 == 1) {
+					i = (int) (Math.random() * 10) % 3;
+					j = (int) (Math.random() * 10) % 3;
 				} else {
-					BOARD[i][j] = 1;
-					System.out.println("Coumputer Choosing " + i + " " + j);
+					System.out.println("enter value of x and y by space");
+					i = userInt();
+					j = userInt();
 				}
-			} else
-				putVal();
+				if (MATRIX[i][j] == -1) {
+					if (player % 2 == 0) {
+						MATRIX[i][j] = 0;
+					} else {
+						MATRIX[i][j] = 1;
+						System.out.println("Coumputer Choosing " + i + " " + j);
+					}
+				} 
+				else
+				addValue();
+			}catch(Exception e){
+				System.out.println("Please enter value according to the matrix size");
+				addValue();
+			}
 
 		}
 		
@@ -483,38 +481,44 @@ public class FunctionalUtilty<E> {
 		 * static function that determines the winner of the game
 		 * @return true if won else false
 		 */
-		public static boolean win() {
-			return ((BOARD[0][0] + BOARD[0][1] + BOARD[0][2] == player * 3)
-					|| (BOARD[1][0] + BOARD[1][1] + BOARD[1][2] == player * 3)
-					|| (BOARD[2][0] + BOARD[2][1] + BOARD[2][2] == player * 3)
-					|| (BOARD[0][0] + BOARD[1][0] + BOARD[2][0] == player * 3)
-					|| (BOARD[0][1] + BOARD[1][1] + BOARD[2][1] == player * 3)
-					|| (BOARD[0][2] + BOARD[1][2] + BOARD[2][2] == player * 3)
-					|| (BOARD[0][0] + BOARD[1][1] + BOARD[2][2] == player * 3)
-					|| (BOARD[2][0] + BOARD[1][1] + BOARD[0][2] == player * 3));
+		public static boolean hasWon() {
+			return ((MATRIX[0][0] + MATRIX[0][1] + MATRIX[0][2] == player * 3)
+					|| (MATRIX[1][0] + MATRIX[1][1] + MATRIX[1][2] == player * 3)
+					|| (MATRIX[2][0] + MATRIX[2][1] + MATRIX[2][2] == player * 3)
+					|| (MATRIX[0][0] + MATRIX[1][0] + MATRIX[2][0] == player * 3)
+					|| (MATRIX[0][1] + MATRIX[1][1] + MATRIX[2][1] == player * 3)
+					|| (MATRIX[0][2] + MATRIX[1][2] + MATRIX[2][2] == player * 3)
+					|| (MATRIX[0][0] + MATRIX[1][1] + MATRIX[2][2] == player * 3)
+					|| (MATRIX[2][0] + MATRIX[1][1] + MATRIX[0][2] == player * 3));
 		}
 
 		/**
 		 * static function that has the definition to play the game
 		 */
 		public static void play() {
-			initBoard();
+			initMatrix();
+			int count=0;
 			while (isEmpty) {
 				System.out.println("Players turn");
-				putVal();
-				dispBoard();
-				if (win()) {
+				addValue();
+				displayMatrix();
+				if (hasWon()) {
 					System.out.println("Player won");
 					return;
 				}
 				player = 1;
-				System.out.println("Computers turn");
-				putVal();
-				dispBoard();
-				if (win()) {
-					System.out.println("Computer won");
-					return;
+				count++;
+				if(count<5){
+					System.out.println("Computers turn");
+					addValue();
+					displayMatrix();
+					if (hasWon()) {
+						System.out.println("Computer won");
+						return;
+					}
 				}
+				else
+					System.out.println("Its a draw");
 				player = 0;
 			}
 		}

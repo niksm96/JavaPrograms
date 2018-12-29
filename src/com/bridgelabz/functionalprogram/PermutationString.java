@@ -45,10 +45,13 @@ public class PermutationString {
 		System.out.println("array after sorting :");
 		arr1=FunctionalUtilty.listSort(arr1);
 		System.out.println(arr1);
+		
 		System.out.println("--------------------------------------------------------------------------------");
 		System.out.println("iteration of a string is ");
+		
 		//Method 2- using static function of FunctionalUtilty class of com.bridgelabz.util package
 		List<String> arr2=FunctionalUtilty.iteration(str);
+		
 		System.out.println(arr2);
 		System.out.println("iteration size is: "+arr2.size());
 		System.out.println("array after sorting :");
