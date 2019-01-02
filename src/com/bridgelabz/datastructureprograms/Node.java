@@ -13,7 +13,7 @@
 package com.bridgelabz.datastructureprograms;
 
 public class Node<T> {
-	private T data;
+	public T data;
 	public Node<T> next;
 	
 	public T getData(){

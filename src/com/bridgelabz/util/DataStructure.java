@@ -133,11 +133,31 @@ public class DataStructure<T> {
 	}
 	
 	 public void printList(){ 
-		 Node<T> tnode = head; 
-	     while(tnode!=null) 
-	        { 
-	            System.out.print(tnode.getData()+" "); 
-	            tnode = tnode.getNext(); 
-	        } 
+		Node<T> tnode = head; 
+	    while(tnode!=null){ 
+	    	System.out.print(tnode.getData()+" "); 
+	    	tnode = tnode.getNext();
 	    } 
+	 } 
+	 
+	 public int size(){
+		 Node<T> tnode = head; 
+		 int len=0;
+		 while(tnode!=null){ 
+			 len++;
+			 tnode = tnode.getNext();
+		 } 
+		 return len;
+	}
+	 
+	public String[] convArray(String[] array){ 
+			Node<T> tnode = head;
+			int i=0;
+		    while(tnode!=null){ 
+		    	array[i]=String.valueOf(tnode.getData()); 
+		    	tnode = tnode.getNext();
+		    	i++;
+		    } 
+		    return array;
+		 } 
 }

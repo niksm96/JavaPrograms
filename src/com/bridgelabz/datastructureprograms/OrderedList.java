@@ -1,19 +1,3 @@
-/******************************************************************************
- *  Compilation:  javac -d bin UnorderedList.java
- *  Execution:    java -cp bin com.bridgelabz.datastructureprograms.UnorderedList n
- *  
- *  Purpose: Reads the text from a file, split it into words and arrange it as Linked List.
- *  		 Takes a user input to search a Word in the List. If the Word is not found then 
- *  		 add it to the list, and if it found then remove the word from the List.
- *  		 In the end save the list into a file
- *
- *  @author  Nikitha Mundargi
- *  @version 1.0
- *  @since   02-01-2019
- *
- ******************************************************************************/
-
-
 package com.bridgelabz.datastructureprograms;
 
 import java.io.BufferedReader;
@@ -24,11 +8,19 @@ import java.io.IOException;
 
 import com.bridgelabz.util.DataStructure;
 
-public class UnorderedList<T> {
-
+public class OrderedList<T> extends Node<T> implements Comparable<T> {
+	@Override
+	public int compareTo(T obj) {
+		if(obj == super.data){
+			return 0;
+		} else {
+			return 1;
+		}
+	}
+	
 	public static void main(String[] args) throws IOException {
 		DataStructure<String> ds=new DataStructure<>();
-		FileReader fr=new FileReader("C:\\Users\\Nikita\\Desktop\\file.csv");
+		FileReader fr=new FileReader("C:\\Users\\Nikita\\Desktop\\odfile.csv");
 		BufferedReader br=new BufferedReader(fr);
 		String str;
 		String delimitor=",";
@@ -67,7 +59,7 @@ public class UnorderedList<T> {
 					}
 					break;
 			case 2: System.out.println("Writing the modifications into the file..");
-					FileWriter fw=new FileWriter("C:\\Users\\Nikita\\Desktop\\file.csv");
+					FileWriter fw=new FileWriter("C:\\Users\\Nikita\\Desktop\\odfile.csv");
 					BufferedWriter bw=new BufferedWriter(fw);
 					int len=ds.size();
 					String[] array=new String[len];
@@ -86,5 +78,4 @@ public class UnorderedList<T> {
 		}while(n<10);
 		
 	}
-	
 }
