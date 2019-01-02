@@ -412,7 +412,7 @@ public class FunctionalUtilty<E> {
 			System.out.println("TIC TAC TOE GAME: Computer is x and Player  is O");
 			for (int i = 0; i < MATRIX.length; i++) {
 				for (int j = 0; j < MATRIX[i].length; j++) {
-					MATRIX[i][j] = -1;
+					MATRIX[i][j] = 10;
 				}
 			}
 			System.out.println("This is the Matrix");
@@ -460,7 +460,7 @@ public class FunctionalUtilty<E> {
 					i = userInt();
 					j = userInt();
 				}
-				if (MATRIX[i][j] == -1) {
+				if (MATRIX[i][j] == 10) {
 					if (player % 2 == 0) {
 						MATRIX[i][j] = 0;
 					} else {
