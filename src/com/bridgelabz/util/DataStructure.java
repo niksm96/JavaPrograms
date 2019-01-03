@@ -73,7 +73,7 @@ public class DataStructure<T> {
 	public boolean isEmpty(){
 		return head==null;
 	}
-	
+
 	public void add(T data){
 		Node<T> nd = new Node<T>();
 		nd.setData(data);
@@ -91,7 +91,7 @@ public class DataStructure<T> {
 	public boolean search(T data){
 	   Node<T> temp=head;
 	   while(temp.getNext()!=null){
-		   if(((String) data).compareTo(String.valueOf(temp.getData()))==0){
+		   if( data.equals(temp.getData())){
 			   return true;
 		   }
 		   temp=temp.getNext();
@@ -103,7 +103,7 @@ public class DataStructure<T> {
 		Node<T> curr=head;
 		int count=0;
 		while(curr!=null){
-			if((String.valueOf(curr.getData())).compareToIgnoreCase(String.valueOf(data))==0){
+			if(curr.getData().equals(data)){
 				curr.getNext();
 				return count;
 			}
@@ -151,13 +151,37 @@ public class DataStructure<T> {
 	}
 	 
 	public String[] convArray(String[] array){ 
-			Node<T> tnode = head;
-			int i=0;
-		    while(tnode!=null){ 
-		    	array[i]=String.valueOf(tnode.getData()); 
-		    	tnode = tnode.getNext();
-		    	i++;
-		    } 
-		    return array;
-		 } 
+		Node<T> tnode = head;
+		int i=0;
+		while(tnode!=null){ 
+			array[i]=String.valueOf(tnode.getData()); 
+			tnode = tnode.getNext();
+			i++;
+		} 
+		return array;
+	}
+	
+	public int[] convertIntArray(String [] arr)
+	{
+		int [] arrInt=new int[arr.length];
+		for(int i=0;i<arr.length;i++)
+		{
+			arrInt[i]=Integer.valueOf(arr[i]);
+		}
+		return arrInt;
+	}
+	
+	public int[] sort(int[] array){
+		int temp;
+		for(int i=0;i<array.length;i++){
+			for(int j=0;j<array.length-1;j++){
+				if(array[j]>array[j+1]){
+					temp=array[j];
+					array[j]=array[j+1];
+					array[j+1]=temp;
+				}
+			}
+		}
+		return array;
+	}
 }

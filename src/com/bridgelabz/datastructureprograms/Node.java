@@ -12,9 +12,24 @@
 
 package com.bridgelabz.datastructureprograms;
 
-public class Node<T> {
+public class Node<T> implements Comparable<T>{
 	public T data;
 	public Node<T> next;
+	public Node<T> prev;
+	
+	public Node(){
+		next=null;
+		data=null;
+	}
+	
+	public Node(T data, Node<T> next){
+		this.data=data;
+		this.next=next;
+	}
+	
+	public Node(T data){
+		this.data=data;
+	}
 	
 	public T getData(){
 		return data;
@@ -30,5 +45,22 @@ public class Node<T> {
 	
 	public void setNext(Node<T> next){
 		this.next=next;
+	}
+	
+	public Node<T> getPrev(){
+		return prev;
+	}
+	
+	public void setPrev(Node<T> prev){
+		this.prev=prev;
+	}
+	
+	@Override
+	public int compareTo(T obj) {
+		if(obj ==this.data){
+			return 0;
+		} else {
+			return 1;
+		}
 	}
 }

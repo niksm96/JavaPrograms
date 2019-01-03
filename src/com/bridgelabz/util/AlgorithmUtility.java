@@ -291,8 +291,8 @@ public class AlgorithmUtility{
 	 */
 	public static void bubbleSortGeneric(String[] array) {
 		String temp;
-		for(int i=0;i<array.length;i++) {
-			for(int j=0;j<array.length-1;j++) {
+		for(int i=1;i<=array.length;i++) {
+			for(int j=1;j<=array.length-i;j++) {
 				if(array[j].compareTo(array[j+1])>0) {
 					temp=array[j];
 					array[j]=array[j+1];
