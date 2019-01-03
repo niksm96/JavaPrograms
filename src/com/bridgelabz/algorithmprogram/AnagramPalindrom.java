@@ -27,18 +27,11 @@ public class AnagramPalindrom {
 	* that are anagram and palindrome
 	*/
 	public static void main(String[] args) {
-		
-		System.out.println("Enter the range: say m and n");
-		System.out.println("Enter m");
-		int m=AlgorithmUtility.userInt();
-		System.out.println("Enter n");
-		int n=AlgorithmUtility.userInt();
-		
 		List<Integer> lst=new ArrayList<Integer>();
 		
 		//Method 1- using static function of AlgorithmUtility class of
 		//com.bridgelabz.util package
-		lst=AlgorithmUtility.primeNumbers(m,n);
+		lst=AlgorithmUtility.primeNumbers();
 		
 		List<String> new_lst=new ArrayList<String>(lst.size());
 		
@@ -53,13 +46,14 @@ public class AnagramPalindrom {
 		//Method 2- using static function of AlgorithmUtility class of
 		//com.bridgelabz.util package
 		set=AlgorithmUtility.anagramPrime(new_lst);
+		System.out.println(set);
 		
 		Set<String> pal_set=new HashSet<String>();
 		System.out.println("The prime numbers which are palindrom");
 		
 		//Method 3- using static function of AlgorithmUtility class of
 		//com.bridgelabz.util package
-		pal_set=AlgorithmUtility.palindromPrime(set);
+		pal_set=AlgorithmUtility.palindromPrime(new_lst);
 		System.out.println(pal_set);
 		
 		

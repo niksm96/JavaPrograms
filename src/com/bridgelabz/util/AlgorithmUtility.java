@@ -100,16 +100,10 @@ public class AlgorithmUtility{
 	 * @param n the integer that represents the upper bound of the range
 	 * @return list of integers that are prime numbers between the range
 	 */
-	public static List<Integer> primeNumbers(int m,int n) {
+	public static List<Integer> primeNumbers() {
 		List<Integer> lst=new ArrayList<Integer>();
-		int temp;
-		if(m>n) {
-			temp=m;
-			m=n;
-			n=temp;
-		}
 		int flag=1;
-		for(int i=m;i<=n;i++){
+		for(int i=2;i<=1000;i++){
 			for(int j=2;j<i;j++){
 				if(i%j==0)
 				{
@@ -519,9 +513,9 @@ public class AlgorithmUtility{
 	 * @param set the set of prime numbers that are anagram
 	 * @return set the set of prime numbers that are anagram and palindrom
 	 */
-	public static Set<String> palindromPrime(Set<String> set){
+	public static Set<String> palindromPrime(List<String> new_lst){
 		Set<String> pal_set=new HashSet<>();
-		Iterator<String> itr=set.iterator();
+		Iterator<String> itr=new_lst.iterator();
 		while(itr.hasNext()){
 			String str=itr.next();
 			if(isPalindrom(str)){
