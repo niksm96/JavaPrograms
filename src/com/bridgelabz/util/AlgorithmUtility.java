@@ -16,7 +16,6 @@ package com.bridgelabz.util;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
@@ -26,7 +25,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class AlgorithmUtility{
+public class AlgorithmUtility<T>{
 	
 	/**
 	 * static object is created for Scanner class to avoid
@@ -68,24 +67,42 @@ public class AlgorithmUtility{
 	
 	/**
 	 *Static function to check if the two strings are anagram or not.
+	 * @param <T>
 	 * 
 	 * @param str1 the string to be checked for anagram
 	 * @param str2 the string to be checked for anagram
 	 * @return true if the strings are anagram else false
 	 */
 	public static boolean isAnagram(String str1,String str2) {
-		char[] n_str1=str1.toCharArray();
-		char[] n_str2=str2.toCharArray();
-		int len1=n_str1.length;
-		int len2=n_str2.length;
+		char[] array1=str1.toCharArray();
+		char temp1,temp2;
+		char[] array2=str2.toCharArray();
+		int len1=str1.length();
+		int len2=str2.length();
 		if(len1!=len2) {
 			return false;
 		}
 		else{
-			Arrays.sort(n_str1);
-			Arrays.sort(n_str2);
-			str1=String.valueOf(n_str1);
-			str2=String.valueOf(n_str2);
+			for(int i=0;i<len1;i++){
+				for(int j=0;j<len1-1;j++){
+					if(array1[j]>array1[j+1]){
+						temp1=array1[j];
+						array1[j]=array1[j+1];
+						array1[j+1]=temp1;
+					}
+				}
+			}
+			for(int i=0;i<len2;i++){
+				for(int j=0;j<len2-1;j++){
+					if(array2[j]>array2[j+1]){
+						temp2=array2[j];
+						array2[j]=array2[j+1];
+						array2[j+1]=temp2;
+					}
+				}
+			}
+			str1=String.valueOf(array1);
+			str2=String.valueOf(array2);
 			if(str1.equals(str2))
 				return true;
 			else
@@ -100,10 +117,10 @@ public class AlgorithmUtility{
 	 * @param n the integer that represents the upper bound of the range
 	 * @return list of integers that are prime numbers between the range
 	 */
-	public static List<Integer> primeNumbers() {
+	public static List<Integer> primeNumbers(int start,int end) {
 		List<Integer> lst=new ArrayList<Integer>();
 		int flag=1;
-		for(int i=2;i<=1000;i++){
+		for(int i=start+2;i<end;i++){
 			for(int j=2;j<i;j++){
 				if(i%j==0)
 				{
@@ -128,11 +145,11 @@ public class AlgorithmUtility{
 	 * @param n the number of integers in the array
 	 * @return integer array the array that is sorted
 	 */
-	public static int[] bubbleSort(int[] array,int n) {
-		int temp;
+	public static <T extends Comparable<T>> T[] bubbleSort(T[] array,int n) {
+		T temp;
 		for(int i=0;i<n;i++) {
 			for(int j=0;j<n-1;j++) {
-				if(array[j]>array[j+1]) {
+				if(array[j].compareTo(array[j+1])>0) {
 					temp=array[j];
 					array[j]=array[j+1];
 					array[j+1]=temp;

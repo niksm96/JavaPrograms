@@ -25,10 +25,11 @@ public class PrimeNumbers {
 	*/
 	public static void main(String[] args) {
 		List<Integer> lst=new ArrayList<>();
-		
+		int start=0;
+		int end=1000;
 		//Method 1- using static function of AlgorithmUtility class of
 		//com.bridgelabz.util package
-		lst=AlgorithmUtility.primeNumbers();
+		lst=AlgorithmUtility.primeNumbers(start,end);
 		
 		for(int i:lst)
 			System.out.println(i);

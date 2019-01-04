@@ -132,13 +132,7 @@ public class DataStructure<T> {
 	        temp.next = next;
 	}
 	
-	 public void printList(){ 
-		Node<T> tnode = head; 
-	    while(tnode!=null){ 
-	    	System.out.print(tnode.getData()+" "); 
-	    	tnode = tnode.getNext();
-	    } 
-	 } 
+	
 	 
 	 public int size(){
 		 Node<T> tnode = head; 
@@ -184,4 +178,12 @@ public class DataStructure<T> {
 		}
 		return array;
 	}
+	
+	 public void printList(){ 
+			Node<T> tnode = head; 
+		    while(tnode!=null){ 
+		    	System.out.print(tnode.getData()+" "); 
+		    	tnode = tnode.getNext();
+		    } 
+		 } 
 }
