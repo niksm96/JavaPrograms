@@ -6,59 +6,59 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import com.bridgelabz.util.DataStructure;
+import com.bridgelabz.util.CustomLinkedList;
+import com.bridgelabz.util.Utility;
 
 public class OrderedList{
 	public static void main(String[] args) throws IOException {
-		DataStructure<Integer> ds=new DataStructure<>();
-		DataStructure<Integer> ds1=new DataStructure<>();
+		CustomLinkedList<Integer> ds=new CustomLinkedList<>();
 		FileReader fr=new FileReader("C:\\Users\\Nikita\\Desktop\\Numbers.csv");
+		CustomLinkedList<Integer> ds1=new CustomLinkedList<>();
 		BufferedReader br=new BufferedReader(fr);
+		String number[]=new String[100];
 		String num;
 		String delimitor=",";
 		while((num=br.readLine())!=null){
-			String number[]=num.split(delimitor);
-			for(String numb:number){
-				ds.add(Integer.parseInt(numb));
-			}
+			number=num.split(delimitor);
+		}
+		Integer [] intArr=new Integer[number.length];
+		for(int i=0;i<intArr.length;i++)
+		{
+			intArr[i]=Integer.valueOf(number[i]);
+		}
+		Integer[] sorted=Utility.sort(intArr);
+		for(int numb:sorted){
+			ds.add(numb);
 		}
 		System.out.println("The numbers in the file are:");
 		ds.printList();
-		System.out.println();
-		int len=ds.size();
-		String[] array=new String[len];
-		String [] array2=ds.convArray(array);
-		int[] res=ds.convertIntArray(array2);
-		int[] sorted=ds.sort(res);
-		System.out.println("The sorted array are:");
-		for(int s:sorted)
-			System.out.print(s+" ");
-		System.out.println("Adding the sorted array into list");
-		for(int i:sorted)
-			ds1.add(i);
-		System.out.println("The sorted numbers in the list");
-		ds1.printList();
 		System.out.println("Enter the choice");
 		int n=0;
 		do{
 			System.out.println("1:Search for a number  2:Final Write  3:Exit");
-			int choice=DataStructure.userInt();
+			int choice=CustomLinkedList.userInt();
 			switch(choice){
 			case 1:	System.out.println("Enter the number to be searched");
-					int user_num=DataStructure.userInt();
-					boolean rs=ds1.search(user_num);
+					int user_num=CustomLinkedList.userInt();
+					boolean rs=ds.search(user_num);
 					if(rs){
 						System.out.println("Number is found");
 						System.out.println("Fetching the index of the number");
-						int index=ds1.index(user_num);
+						int index=ds.index(user_num);
 						System.out.println(index);
-						ds1.remove(index);
+						ds.remove(index);
 						System.out.println("The list after removing the number");
-						ds1.printList();
+						ds.printList();
 					}
 					else{
 						System.out.println("Number not found");
-						ds1.add(user_num);
+						ds.add(user_num);
+						String[] array=new String[ds.size()];
+						String array1[]=ds.convArray(array);
+						int[] intArray=ds.convertIntArray(array1);
+						int[] sorted_array=ds.sort(intArray);
+						for(int i:sorted_array)
+							ds1.add(i);
 						System.out.println("The list after adding the not found element");
 						ds1.printList();
 					}

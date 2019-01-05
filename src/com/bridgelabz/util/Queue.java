@@ -2,8 +2,8 @@ package com.bridgelabz.util;
 
 import com.bridgelabz.datastructureprograms.Node;
 
-public class Queue{
-	public Node<Integer> front,rear;
+public class Queue<T>{
+	public Node<T> front,rear;
 	public int size;
 	
 	public Queue(){
@@ -20,8 +20,8 @@ public class Queue{
 		return size;
 	}
 	
-	public void insert(int data){
-		Node<Integer> node=new Node<Integer>(data,null);
+	public void insert(T data){
+		Node<T> node=new Node<T>(data,null);
 		if(rear==null){
 			front=node;
 			rear=node;
@@ -33,10 +33,10 @@ public class Queue{
 		size++;
 	}
 	
-	public int remove(){
+	public T remove(){
 		if(isQueueEmpty())
 			System.out.println("Underflow");
-		Node<Integer> curr=front;
+		Node<T> curr=front;
 		front = curr.getNext();        
         if (front == null){
             rear =null;
@@ -46,18 +46,17 @@ public class Queue{
 	}
 	
 	 public void display(){  
-		 int ptr1=0;
-		 System.out.print("Available Balance = ");
-	     if (size == 0){
-	    	 System.out.print("Empty");
-	    	 return ;
-	     }
-	     Node<Integer> ptr = front;
-	     while (ptr != rear.getNext()){ 
-	    	 ptr1=ptr1+ptr.getData();
-	    	 System.out.println(ptr1);
-	    	 ptr = ptr.getNext();
-	     }	
-	     System.out.println();        
+		if(isQueueEmpty()){
+			System.out.println("Queue is empty");
+			return;
+		}
+		else{
+			Node<T> tNode=front;
+			while(tNode!=null){
+				System.out.print(tNode.data+" ");
+				tNode=tNode.next;
+			}
+			
+		}
 	 }
 }

@@ -1,13 +1,13 @@
 package com.bridgelabz.datastructureprograms;
 
-import com.bridgelabz.util.DataStructure;
+import com.bridgelabz.util.CustomLinkedList;
 import com.bridgelabz.util.Stack;
 
 public class BalancedPStack {
 	public static void main(String[] args){
 		Stack s=new Stack();
 		System.out.println("Enter the arithmetic expression");
-		String a_exp=DataStructure.userString();
+		String a_exp=CustomLinkedList.userString();
 		int len=a_exp.length();
 		System.out.println("Balancing");
 		for(int i=0;i<len;i++){

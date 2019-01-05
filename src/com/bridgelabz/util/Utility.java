@@ -1,9 +1,7 @@
 package com.bridgelabz.util;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class Utility {
 	
@@ -34,17 +32,18 @@ public class Utility {
 		int count = catalan(nodes); 
 		return count; 
 	}
-	public static Set<Integer> anagramPrime(List<Integer> new_lst){
-		Set<Integer> set=new HashSet<>();
+	public static List<Integer> anagramPrime(List<Integer> new_lst){
+		List<Integer> listOfAnagrams=new ArrayList<Integer>();
 		for(int i=0;i<new_lst.size();i++){
 			for(int j=i+1;j<new_lst.size();j++){
 				if(AlgorithmUtility.isAnagram(String.valueOf(new_lst.get(i)),String.valueOf( new_lst.get(j)))){
-					set.add(new_lst.get(i));
-					set.add(new_lst.get(j));
+					listOfAnagrams.add(new_lst.get(i));
+					listOfAnagrams.add(new_lst.get(j));
+					System.out.println(new_lst.get(i)+"  "+new_lst.get(j));
 				}
 			}
 		}
-		return set;
+		return listOfAnagrams;
 	}
 	
 	public static void printPrimeAndAnagram(List<List<Integer>> list)
@@ -68,5 +67,19 @@ public class Utility {
             System.out.println();
         }
     }
+	
+	public static <T extends Comparable<T>> T[] sort(T[] array) {
+		T temp;
+		for(int i=0;i<array.length;i++) {
+			for(int j=0;j<array.length-1;j++) {
+				if(array[j].compareTo(array[j+1])>0) {
+					temp=array[j];
+					array[j]=array[j+1];
+					array[j+1]=temp;
+				}
+			}
+		}
+		return array;
+	}
 
 }

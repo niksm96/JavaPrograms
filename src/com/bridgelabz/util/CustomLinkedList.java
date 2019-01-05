@@ -18,12 +18,12 @@ import java.util.Scanner;
 
 import com.bridgelabz.datastructureprograms.Node;
 
-public class DataStructure<T> {
+public class CustomLinkedList<T> {
 	
 	private Node<T> head;
 	private Node<T> tail;
 	     
-	public DataStructure(){
+	public CustomLinkedList(){
 		head=null;
 	}
 	

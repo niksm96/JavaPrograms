@@ -22,12 +22,12 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import com.bridgelabz.util.DataStructure;
+import com.bridgelabz.util.CustomLinkedList;
 
 public class UnorderedList<T> {
 
 	public static void main(String[] args) throws IOException {
-		DataStructure<String> ds=new DataStructure<>();
+		CustomLinkedList<String> ds=new CustomLinkedList<>();
 		FileReader fr=new FileReader("C:\\Users\\Nikita\\Desktop\\file.csv");
 		BufferedReader br=new BufferedReader(fr);
 		String str;
@@ -45,10 +45,10 @@ public class UnorderedList<T> {
 		int n=0;
 		do{
 			System.out.println("1:Search for a word  2:Exit and Write");
-			int choice=DataStructure.userInt();
+			int choice=CustomLinkedList.userInt();
 			switch(choice){
 			case 1:	System.out.println("Enter the key to be searched");
-					String string=DataStructure.userString();
+					String string=CustomLinkedList.userString();
 					boolean rs=ds.search(string);
 					if(rs){
 						System.out.println("Word is found");

@@ -1,6 +1,6 @@
 package com.bridgelabz.datastructureprograms;
 
-import com.bridgelabz.util.DataStructure;
+import com.bridgelabz.util.CustomLinkedList;
 import com.bridgelabz.util.Queue;
 
 public class Banking {
@@ -11,20 +11,20 @@ public class Banking {
 		do{
 			System.out.println("Enter the choice");
 			System.out.println("1:Add  2:Check Cash  3:Exit");
-			int choice=DataStructure.userInt();
+			int choice=CustomLinkedList.userInt();
 			switch(choice){
 			case 1: q.insert(count++);
 					System.out.println("Adding "+count+" person to the queue");
 					System.out.println("Do you want to: 1-Deposit 2-Withdraw");
-					int ch=DataStructure.userInt();
+					int ch=CustomLinkedList.userInt();
 					switch(ch){
 					case 1: System.out.println("Enter the amount to deposit");
-							int dep_amt=DataStructure.userInt();
+							int dep_amt=CustomLinkedList.userInt();
 							cash_count+=dep_amt;
 							System.out.println(dep_amt+" is added");
 							break;
 					case 2: System.out.println("Enter the amount to withdraw");
-							int withdraw=DataStructure.userInt();
+							int withdraw=CustomLinkedList.userInt();
 							if(withdraw>cash_count){
 								System.out.println("Cash of that amount is not available");
 							}

@@ -479,8 +479,8 @@ public class AlgorithmUtility<T>{
 	 * 
 	 * @param array the array that is needed to be sorted
 	 */
-	public static void sort(String[] array) {
-		String temp;
+	public static <T extends Comparable<T>> void sort(T[] array) {
+		T temp;
 		for(int i=0;i<array.length;i++) {
 			for(int j=0;j<array.length-1;j++) {
 				if(array[j].compareTo(array[j+1])>0) {

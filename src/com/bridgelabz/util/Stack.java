@@ -5,7 +5,7 @@ public class Stack {
 	long[] stackArray;
 	
 	public Stack(){
-		stackArray=new long[100];
+		stackArray=new long[1000];
 		top=-1;
 	}
 	

@@ -3,18 +3,18 @@ package com.bridgelabz.datastructureprograms;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bridgelabz.util.DataStructure;
+import com.bridgelabz.util.CustomLinkedList;
 import com.bridgelabz.util.Utility;
 
 public class BinarySearchTree {
 	public static void main(String[] args) {
 		System.out.println("Enter the number of test cases");
-		int ch=DataStructure.userInt();
+		int ch=CustomLinkedList.userInt();
 		List<Integer> lst=new ArrayList<Integer>();
 		int i=0;
 		while(i<ch){
 			System.out.println("Enter the number of nodes");
-			int nodes=DataStructure.userInt();
+			int nodes=CustomLinkedList.userInt();
 			int res=Utility.numberOfBST(nodes);
 			lst.add(res);
 			i++;

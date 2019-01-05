@@ -9,18 +9,17 @@ import java.util.HashMap;
 
 import java.util.Map;
 
-import com.bridgelabz.util.DataStructure;
+import com.bridgelabz.util.CustomLinkedList;
 
 public class HashNumber {
 	public static void main(String[] args) throws IOException{
-		DataStructure<Integer> ds=new DataStructure<>();
-		DataStructure<Integer> ds1 = null;
-		Map<Integer, DataStructure<Integer>> map=new HashMap<Integer, DataStructure<Integer>>();
+		CustomLinkedList<Integer> ds=new CustomLinkedList<>();
+		CustomLinkedList<Integer> ds1 = null;
+		Map<Integer, CustomLinkedList<Integer>> map=new HashMap<Integer, CustomLinkedList<Integer>>();
 		for(int i=0;i<10;i++){
-			ds1 = new DataStructure<>();
+			ds1 = new CustomLinkedList<>();
 			map.put(i, ds1);
 		}
-		
 		FileReader fr=new FileReader("C:\\Users\\Nikita\\Desktop\\HashNumb.csv");
 		BufferedReader br=new BufferedReader(fr);
 		int rem;
@@ -65,14 +64,20 @@ public class HashNumber {
 				
 			}
 		}
+		for(int key:map.keySet()){
+			System.out.println(key);
+		}
+		for(CustomLinkedList<Integer> cl:map.values()){
+			cl.printList();
+		}
 		int n=0;
 		do{
 			System.out.println("Enter choice");
 			System.out.println("1:Search for the number  2:Write  3:Exit");
-			int choice=DataStructure.userInt();
+			int choice=CustomLinkedList.userInt();
 			switch(choice){
 			case 1: System.out.println("Enter the number to search");
-					int user_num=DataStructure.userInt();
+					int user_num=CustomLinkedList.userInt();
 					boolean rs=ds1.search(user_num);
 					if(rs){
 						System.out.println("The number is found");
