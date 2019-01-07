@@ -26,8 +26,15 @@ import com.bridgelabz.util.CustomLinkedList;
 
 public class UnorderedList<T> {
 
+	/*
+	* The main function is read a file and add to customized linked 
+	* list to find the searched word
+	*/
 	public static void main(String[] args) throws IOException {
+		
+		//Customized Linked list
 		CustomLinkedList<String> ds=new CustomLinkedList<>();
+		
 		FileReader fr=new FileReader("C:\\Users\\Nikita\\Desktop\\file.csv");
 		BufferedReader br=new BufferedReader(fr);
 		String str;
@@ -35,13 +42,20 @@ public class UnorderedList<T> {
 		while((str=br.readLine())!=null){
 			String[] word=str.split(delimitor);
 			for(String string:word){
+				
+				//Method 1- using function of CustomLinkedList class of
+				//com.bridgelabz.util package
 				ds.add(string);
+				
 			}
 		}
 		System.out.println("The list consists of:");
-		ds.printList();
-		System.out.println("Enter the choice");
 		
+		//Method 2- using function of CustomLinkedList class of
+		//com.bridgelabz.util package
+		ds.printList();
+		
+		System.out.println("Enter the choice");
 		int n=0;
 		do{
 			System.out.println("1:Search for a word  2:Exit and Write");
@@ -49,15 +63,31 @@ public class UnorderedList<T> {
 			switch(choice){
 			case 1:	System.out.println("Enter the key to be searched");
 					String string=CustomLinkedList.userString();
+					
+					//Method 3- using function of CustomLinkedList class of
+					//com.bridgelabz.util package
 					boolean rs=ds.search(string);
+					
 					if(rs){
 						System.out.println("Word is found");
 						System.out.println("Fetching the index of the word");
+					
+						//Method 4- using function of CustomLinkedList class of
+						//com.bridgelabz.util package
 						int index=ds.index(string);
+						
 						System.out.println(index);
+						
+						//Method 5- using function of CustomLinkedList class of
+						//com.bridgelabz.util package
 						ds.remove(index);
+						
 						System.out.println("The list after removing the string");
+						
+						//Method 6- using function of CustomLinkedList class of
+						//com.bridgelabz.util package
 						ds.printList();
+						
 					}
 					else{
 						System.out.println("Word is not found");
@@ -69,9 +99,17 @@ public class UnorderedList<T> {
 			case 2: System.out.println("Writing the modifications into the file..");
 					FileWriter fw=new FileWriter("C:\\Users\\Nikita\\Desktop\\file.csv");
 					BufferedWriter bw=new BufferedWriter(fw);
+					
+					//Method 7- using function of CustomLinkedList class of
+					//com.bridgelabz.util package
 					int len=ds.size();
+					
 					String[] array=new String[len];
+					
+					//Method 8- using function of CustomLinkedList class of
+					//com.bridgelabz.util package
 					String[] result=ds.convArray(array);
+					
 					for(int i=0;i<result.length;i++){
 						bw.write(result[i]+", ");
 					}

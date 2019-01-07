@@ -1,31 +1,41 @@
+/******************************************************************************
+ *  Compilation:  javac -d bin BalancedPStack.java
+ *  Execution:    java -cp bin com.bridgelabz.datastructureprograms.BalancedPStack n
+ *  
+ *  Purpose: ­> Take an Arithmetic Expression such as
+ *  (5+6)∗(7+8)/(4+3)(5+6)∗(7+8)/(4+3) where parentheses are used to order the
+ *  performance of operations. Ensure parentheses must appear in a balanced
+ *  fashion.
+ *
+ *  @author  Nikitha Mundargi
+ *  @version 1.0
+ *  @since   02-01-2019
+ *
+ ******************************************************************************/
+
 package com.bridgelabz.datastructureprograms;
 
 import com.bridgelabz.util.CustomLinkedList;
-import com.bridgelabz.util.Stack;
+import com.bridgelabz.util.Utility;
 
 public class BalancedPStack {
+	
+	/*
+	* The main function is written to take input from the user and and 
+	* call the isBalanced function that checks if the parantheses of 
+	* the entered arithmetic expression
+	*/
 	public static void main(String[] args){
-		Stack s=new Stack();
 		System.out.println("Enter the arithmetic expression");
 		String a_exp=CustomLinkedList.userString();
-		int len=a_exp.length();
-		System.out.println("Balancing");
-		for(int i=0;i<len;i++){
-			char ch=a_exp.charAt(i);
-			if(ch=='('){
-				s.push(i);
-			}
-			else if(ch==')'){
-				try{
-					long p=s.pop()+1;
-					System.out.println("')' at index "+(i+1)+" matched with '(' at index "+p);
-				}catch(Exception e){
-					System.out.println("')' at index "+(i+1)+" is unmatched");
-				}
-			}
-		}
-		while(!s.isStackEmpty()){
-			System.out.println("'(' at index "+(s.pop() +1)+" is unmatched");
-		}
+		
+		//Method 1- using static function of Utility class of
+		//com.bridgelabz.util package
+		boolean rs=Utility.isBalanced(a_exp);
+		
+		if(rs)
+			System.out.println("Balanced");
+		else
+			System.out.println("Not Balanced");
 	}
 }

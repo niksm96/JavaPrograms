@@ -1,6 +1,6 @@
 /******************************************************************************
- *  Compilation:  javac -d bin DataStructure.java
- *  Execution:    java -cp bin com.bridgelabz.util.DataStructure
+ *  Compilation:  javac -d bin CustomLinkedList.java
+ *  Execution:    java -cp bin com.bridgelabz.util.CustomLinkedList
  *  
  *  Purpose: Contains all the functions for the .java files in 
  *  		 com.bridgelabz.datastructureprograms package
@@ -20,9 +20,21 @@ import com.bridgelabz.datastructureprograms.Node;
 
 public class CustomLinkedList<T> {
 	
+	/*
+	 * head of the type Node<T> is declared private to achieve 
+	 * encapsulation
+	 */
 	private Node<T> head;
+	
+	/*
+	 * tail of the type Node<T> is declared private to achieve 
+	 * encapsulation
+	 */
 	private Node<T> tail;
 	     
+	/**
+	 * Constructos to initialize the instance variable head
+	 */
 	public CustomLinkedList(){
 		head=null;
 	}
@@ -74,23 +86,47 @@ public class CustomLinkedList<T> {
 		return head==null;
 	}
 
+	/**
+	 * Function to add the elements to the linked list 
+	 * 
+	 * @param data the element that is to be added
+	 */
 	public void add(T data){
 		Node<T> nd = new Node<T>();
+		
+		//Function call to set the data present in Node class 
+		//of com.bridgelabz.datastructureprograms
 		nd.setData(data);
+		
 		System.out.println("Adding: "+data);
 		if(isEmpty()){
 			head = nd;
 			tail = nd;
 		} 
 		else{
+			
+			//Function call to set the data present in Node class 
+			//of com.bridgelabz.datastructureprograms
 			tail.setNext(nd);
 			tail = nd;
 		}
 	}
 	
+	/**
+	 * Function to search the entered element in the list 
+	 * 
+	 * @param data the element that is to be searched
+	 * @return true if present else false
+	 */
 	public boolean search(T data){
 	   Node<T> temp=head;
+	   
+	 //Function call to get the link present in Node class 
+	  //of com.bridgelabz.datastructureprograms
 	   while(temp.getNext()!=null){
+		   
+		 //Function call to get the data present in Node class 
+		//of com.bridgelabz.datastructureprograms
 		   if( data.equals(temp.getData())){
 			   return true;
 		   }

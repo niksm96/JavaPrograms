@@ -82,4 +82,25 @@ public class Utility {
 		return array;
 	}
 
+	public static boolean isBalanced(String str){
+	    if (str.isEmpty())
+	        return true;
+	    StackLinkedList<Character> stack = new StackLinkedList<Character>();
+	    for (int i = 0; i < str.length(); i++){
+	        char current = str.charAt(i);
+	        if (current == '('){
+	            stack.push(current);
+	        }
+	        if (current == ')'){
+	            if (stack.isEmpty())
+	                return false;
+	            char last = stack.peek();
+	            if (current == ')' && last == '(')
+	                stack.pop();
+	            else 
+	                return false;
+	        }
+	    }
+	    return stack.isEmpty();
+	}
 }
