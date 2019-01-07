@@ -1,3 +1,16 @@
+/******************************************************************************
+ *  Compilation:  javac -d bin Utility.java
+ *  Execution:    java -cp bin com.bridgelabz.util.Utility
+ *  
+ *  Purpose: Contains some of the functions for the .java files in 
+ *  		 com.bridgelabz.datastructureprograms package
+ *
+ *  @author  Nikitha Mundargi
+ *  @version 1.0
+ *  @since   02-01-2019
+ *
+ ******************************************************************************/
+
 package com.bridgelabz.util;
 
 import java.util.ArrayList;
@@ -5,12 +18,25 @@ import java.util.List;
 
 public class Utility {
 	
+	/**
+	 * Function to find the factorial of a given number
+	 * 
+	 * @param nodes the number whose factorial needs to be found
+	 * @return the factorial of a number 
+	 */
 	public static int factorial(int nodes){ 
 	    if(nodes==0)
 	    	return 0;
 	    return nodes*factorial(nodes-1); 
 	} 
 	  
+	/**
+	 * Function that finds the bionomial co effecient of a number
+	 * 
+	 * @param nodes the number whose binomial co efficient is to be found
+	 * @param k the number
+	 * @return the number that represents the binomial coeff
+	 */
 	public static int binomialCoeff(int nodes, int k){ 
 	    int res = 1; 
 	    if (k > nodes - k) 
@@ -22,16 +48,36 @@ public class Utility {
 	    return res; 
 	} 
 	  
+	/**
+	 * FUnction that calculates the catalan number of a number
+	 * 
+	 * @param nodes the number whose catalan number is to be found
+	 * @return the catalan number
+	 */
 	public static int catalan( int nodes) 
 	{
 	    int c = binomialCoeff(2 * nodes, nodes); 
 	    return c / (nodes + 1); 
 	} 
 
+	/**
+	 * Function that counts the number of binary search trees are possible
+	 * for a given number of nodes
+	 * 
+	 * @param nodes the number of nodes
+	 * @return the count of binary search tree
+	 */
 	public static int numberOfBST(int nodes){
 		int count = catalan(nodes); 
 		return count; 
 	}
+	
+	/**
+	 * Function that checks if the prime numbers are anagram or not
+	 * 
+	 * @param new_lst the list of prime numbers 
+	 * @return the list of prime numbers that are anagram
+	 */
 	public static List<Integer> anagramPrime(List<Integer> new_lst){
 		List<Integer> listOfAnagrams=new ArrayList<Integer>();
 		for(int i=0;i<new_lst.size();i++){
@@ -46,6 +92,11 @@ public class Utility {
 		return listOfAnagrams;
 	}
 	
+	/**
+	 * Function that prints the list of prime numbers that are anagram 
+	 * 
+	 * @param list of prime numbers that anagram 
+	 */
 	public static void printPrimeAndAnagram(List<List<Integer>> list)
     {
         List<Integer> aList = new ArrayList<Integer>();
@@ -68,6 +119,12 @@ public class Utility {
         }
     }
 	
+	/**
+	 * Function to sort any kind of data
+	 * 
+	 * @param array the array of any type that needs to be sorted
+	 * @return the array that is sorted
+	 */
 	public static <T extends Comparable<T>> T[] sort(T[] array) {
 		T temp;
 		for(int i=0;i<array.length;i++) {
@@ -82,6 +139,13 @@ public class Utility {
 		return array;
 	}
 
+	/**
+	 * Function that checks whether the parantheses in a arithematic
+	 * expression is balanced or no
+	 * 
+	 * @param str the arithematic expression 
+	 * @return true if balanced else false
+	 */
 	public static boolean isBalanced(String str){
 	    if (str.isEmpty())
 	        return true;

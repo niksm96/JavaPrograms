@@ -2,8 +2,7 @@
  *  Compilation:  javac -d bin CustomLinkedList.java
  *  Execution:    java -cp bin com.bridgelabz.util.CustomLinkedList
  *  
- *  Purpose: Contains all the functions for the .java files in 
- *  		 com.bridgelabz.datastructureprograms package
+ *  Purpose: Contains all the functions to create a linked list 
  *
  *  @author  Nikitha Mundargi
  *  @version 1.0
@@ -135,6 +134,12 @@ public class CustomLinkedList<T> {
 	   return false;
 	}
 	
+	/**
+	 * Function that gives the index of a specified element 
+	 * 
+	 * @param data the data whose index is to be found
+	 * @return the index of the specified element 
+	 */
 	public int index(T data){
 		Node<T> curr=head;
 		int count=0;
@@ -150,6 +155,12 @@ public class CustomLinkedList<T> {
 		return 0;
 	}
 	
+	/**
+	 * Function to remove the element of the specified index
+	 * 
+	 * @param index the index of an element which is needed to be 
+	 *		  deleted
+	 */
 	public void remove(int index){
 		if(isEmpty())
 			return;
@@ -169,7 +180,10 @@ public class CustomLinkedList<T> {
 	}
 	
 	
-	 
+	 /**
+	  * Function that returns the size of the linked list 
+	  * @return
+	  */
 	 public int size(){
 		 Node<T> tnode = head; 
 		 int len=0;
@@ -180,6 +194,12 @@ public class CustomLinkedList<T> {
 		 return len;
 	}
 	 
+	 /**
+	  * Function that converts the list into String array 
+	  * 
+	  * @param array the array that is empty 
+	  * @return the array of strings 
+	  */
 	public String[] convArray(String[] array){ 
 		Node<T> tnode = head;
 		int i=0;
@@ -191,6 +211,12 @@ public class CustomLinkedList<T> {
 		return array;
 	}
 	
+	/**
+	 * Function to convert the array of strings to array of integers
+	 * 
+	 * @param arr the array of strings that is needed to be converted
+	 * @return the array of integer 
+	 */
 	public int[] convertIntArray(String [] arr)
 	{
 		int [] arrInt=new int[arr.length];
@@ -201,6 +227,12 @@ public class CustomLinkedList<T> {
 		return arrInt;
 	}
 	
+	/**
+	 * Function that sorts the given array in ascending order
+	 * 
+	 * @param array the array of integers that is needed to be sorted
+	 * @return array of integers that is sorted
+	 */
 	public int[] sort(int[] array){
 		int temp;
 		for(int i=0;i<array.length;i++){
@@ -215,6 +247,9 @@ public class CustomLinkedList<T> {
 		return array;
 	}
 	
+	/**
+	 * Function that prints all the elements present in the linked list 
+	 */
 	 public void printList(){ 
 			Node<T> tnode = head; 
 		    while(tnode!=null){ 
