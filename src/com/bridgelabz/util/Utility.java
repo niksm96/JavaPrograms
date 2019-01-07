@@ -13,6 +13,9 @@
 
 package com.bridgelabz.util;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -166,5 +169,23 @@ public class Utility {
 	        }
 	    }
 	    return stack.isEmpty();
+	}
+	
+	/**
+	 * Function that writes the data into the file
+	 * 
+	 * @param sorted the sorted array of elements
+	 * @param filename the name of the file to be write on
+	 * @throws IOException throws input/output exception
+	 */
+	public static void fileWriter(String[] sorted,String filename) throws IOException{
+		FileWriter fw=new FileWriter(filename);
+		for(String str:sorted){
+			if(str!=null){
+				fw.write(str);
+				fw.write(",");
+			}
+		}
+		fw.close();
 	}
 }

@@ -37,7 +37,7 @@ public class HashNumber {
 		CustomLinkedList<Integer> ds1 = null;
 		
 		Map<Integer, CustomLinkedList<Integer>> map=new HashMap<Integer, CustomLinkedList<Integer>>();
-		for(int i=0;i<10;i++){
+		for(int i=0;i<=10;i++){
 			ds1 = new CustomLinkedList<>();
 			map.put(i, ds1);
 		}
@@ -86,7 +86,7 @@ public class HashNumber {
 		for(int i=0;i<sorted.length;i++){
 			rem=sorted[i]%11;
 			if(map.isEmpty()){
-		
+				
 				//Method 6- using function of CustomLinkedList class of
 				//com.bridgelabz.util package
 				ds1.add(sorted[i]);
@@ -94,6 +94,7 @@ public class HashNumber {
 				map.put(rem, ds1);
 			}
 			else{
+				ds1=map.get(rem);
 				if(ds1.size()==0){
 					ds1.add(sorted[i]);
 				}
@@ -108,11 +109,12 @@ public class HashNumber {
 				map.put(rem, ds1);
 			}
 		}
-		for(int key:map.keySet()){
-			System.out.println(key);
-		}
-		for(CustomLinkedList<Integer> cl:map.values()){
-			cl.printList();
+		
+		for(int i=0; i<map.size(); i++){
+			CustomLinkedList<Integer> list = map.get(i);
+			System.out.print(i+": ");
+			list.printList();
+			System.out.println();
 		}
 		int n=0;
 		do{

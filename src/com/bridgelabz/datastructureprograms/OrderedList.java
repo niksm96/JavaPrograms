@@ -34,7 +34,8 @@ public class OrderedList{
 		
 		//Customized Linked List
 		CustomLinkedList<Integer> ds=new CustomLinkedList<>();
-		FileReader fr=new FileReader("C:\\Users\\Nikita\\Desktop\\Numbers.csv");
+		String filename="C:\\Users\\Nikita\\Desktop\\Numbers.csv";
+		FileReader fr=new FileReader(filename);
 		CustomLinkedList<Integer> ds1=new CustomLinkedList<>();
 		BufferedReader br=new BufferedReader(fr);
 		String number[]=new String[100];
@@ -114,25 +115,25 @@ public class OrderedList{
 						
 						int[] sorted_array=ds.sort(intArray);
 						for(int i:sorted_array)
-							ds1.add(i);
+							ds.add(i);
 						System.out.println("The list after adding the not found element");
-						ds1.printList();
+						ds.printList();
 					}
 					break;
 			case 2: System.out.println("Writing the modifications into the file..");
-					FileWriter fw=new FileWriter("C:\\Users\\Nikita\\Desktop\\Numbers.csv");
-					BufferedWriter bw=new BufferedWriter(fw);
+					
 					
 					//Method 10- using function of CustomLinkedList class of
 					//com.bridgelabz.util package
-					int leng=ds1.size();
+					int leng=ds.size();
 					String[] res_array=new String[leng];
-					String[] result=ds1.convArray(res_array);
-					for(int i=0;i<result.length;i++){
-						bw.write(result[i]+", ");
-					}
-					br.close();
-					bw.close();
+					String[] result=ds.convArray(res_array);
+					Utility.fileWriter(result,filename);
+//					for(int i=0;i<result.length;i++){
+//						bw.write(result[i]+", ");
+//					}
+//					br.close();
+//					bw.close();
 					break;
 		   case 3: System.out.println("Invalid choice");
 				   System.exit(0);
