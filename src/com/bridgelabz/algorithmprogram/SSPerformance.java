@@ -30,20 +30,15 @@ public class SSPerformance {
 	* 	(vi)binarySearch method for strings
 	*/
 	public static void main(String[] args) {
-		System.out.println("Enter the number of data to be sorted or searched");
+		System.out.println("Enter the number of data you want to store");
 		
 		Map<String, Double> elapsed_time=new HashMap<>();
 		
 		//Reading inputs from the user
 		int num=AlgorithmUtility.userInt();
-		
-		String array[]=new String[num];
+
 		double et1,et2,et3,et4,et5,et6;
-		
-		//Reading data entered by the user
-		System.out.println("Enter the data");
-		for(int i=0;i<num;i++)
-			array[i]=AlgorithmUtility.userString();
+	
 		int n=0;
 		do{
 			System.out.println("Choose the algorithm to be implemented from the foll:");
@@ -56,89 +51,131 @@ public class SSPerformance {
 			int choice=AlgorithmUtility.userInt();
 		
 			switch(choice) {
-				case 1:	long start_time=System.nanoTime();
+				case 1:	System.out.println("Enter integer values");
+						Integer[] numbers=new Integer[num];
+						for(int i=0;i<num;i++){
+							numbers[i]=AlgorithmUtility.userInt();
+						}
+						long start_time=System.nanoTime();
 			
 						//Method 1- using static function of AlgorithmUtility class
 						//of com.bridgelabz.util package
-						AlgorithmUtility.bubbleSortGeneric(array);
+						Integer[] int_array=AlgorithmUtility.bubbleSort(numbers,num);
 				
 						long end_time=System.nanoTime();
+						System.out.println("The array after sorting is: ");
+						for(Integer i:int_array)
+							System.out.print(i+ " ");
 						et1=end_time-start_time;
 						elapsed_time.put("Integer Bubble Sort",et1);
 						System.out.println("Elapsed time: "+et1);
 						break;
 				
-						case 2: long start_time1=System.nanoTime();
+				case 2: System.out.println("Enter the strings");	
+						String[] string=new String[num];
+						for(int i=0;i<num;i++){
+							string[i]=AlgorithmUtility.userString();
+						}
 				
+						long start_time1=System.nanoTime();
+					
 						//Method 2- using static function of AlgorithmUtility class
 						//of com.bridgelabz.util package
-						AlgorithmUtility.bubbleSortGeneric(array);
-				
+						String[] res_string=AlgorithmUtility.bubbleSort(string,num);
+						
 						long end_time1=System.nanoTime();
+						System.out.println("The array after sorting is:");
+						for(String str:res_string)
+							System.out.println(str);
 						et2=end_time1-start_time1;
 						elapsed_time.put("String Bubble Sort",et2);
 						System.out.println("Elapsed time: "+et2);
 						break;
-				
-				case 3: long start_time2=System.nanoTime();
+					
+				case 3: System.out.println("Enter the integers");	
+						Integer[] in_num=new Integer[num];
+						for(int i=0;i<num;i++){
+							in_num[i]=AlgorithmUtility.userInt();
+						}
+					
+						long start_time2=System.nanoTime();
 		
 						//Method 3- using static function of AlgorithmUtility class
 						//of com.bridgelabz.util package
-						AlgorithmUtility.insertionSortGeneric(array,num);
-				
+						Integer[] res_in=AlgorithmUtility.insertionSort(in_num,num);
+						
 						long end_time2=System.nanoTime();
+						System.out.println("The array of sorted are:");
+						for(Integer j:res_in)
+							System.out.println(j);
 						et3=end_time2-start_time2;
 						elapsed_time.put("Integer Insertion Sort",et3);
 						System.out.println("Elapsed time: "+et3);
 						break;
 				
-				case 4: long start_time3=System.nanoTime();
+				case 4: System.out.println("Enter the strings");	
+						String[] string1=new String[num];
+						for(int i=0;i<num;i++){
+							string1[i]=AlgorithmUtility.userString();
+						}
+						long start_time3=System.nanoTime();
 		
 
 						//Method 4- using static function of AlgorithmUtility class
 						//of com.bridgelabz.util package
-						AlgorithmUtility.insertionSortGeneric(array,num);
+						String[] res_string1=AlgorithmUtility.insertionSort(string1,num);
 				
 						long end_time3=System.nanoTime();
+						System.out.println("The sorted strings are: ");
+						for(String str1:res_string1)
+							System.out.println(str1);
 						et4=end_time3-start_time3;
 						elapsed_time.put("String Insertion Sort",et4);
 						System.out.println("Elapsed time: "+et4);
 						break;
 				
-				case 5: System.out.println("Enter the key to be searched");
+				case 5: System.out.println("Enter the integers");	
+						Integer[] bin_num=new Integer[num];
+						for(int i=0;i<num;i++){
+							bin_num[i]=AlgorithmUtility.userInt();
+						}
+						System.out.println("Enter the key to be searched");
 				
 						//Reading the key to be searched in the sorted array
-						String key=AlgorithmUtility.userString();
+						Integer key=AlgorithmUtility.userInt();
 				
 						long start_time4=System.nanoTime();
 		
 
 						//Method 5- using static function of AlgorithmUtility class
 						//of com.bridgelabz.util package
-						int index=AlgorithmUtility.binarySearchGeneric(array, key);
-				
-						System.out.println("The key you are searching for is under the index= "+index);
+						int index=AlgorithmUtility.binarySearchGeneric(bin_num, key);
 	
 						long end_time4=System.nanoTime();
+						System.out.println("The key you are searching for is under the index= "+index);
 						et5=end_time4-start_time4;
 						elapsed_time.put("Integer Binary Search",et5);
 						System.out.println("Elapsed time: "+et5);
 						break;
 				
-				case 6: long start_time5=System.nanoTime();
-		
+				case 6:  System.out.println("Enter the strings");	
+						String[] string2=new String[num];
+						for(int i=0;i<num;i++){
+							string2[i]=AlgorithmUtility.userString();
+						}
 						System.out.println("Enter the key to be searched");
-		
+						
 						//Reading the key to be searched in the sorted array
 						String key1=AlgorithmUtility.userString();
+						
+						long start_time5=System.nanoTime();
 		
 						//Method 6- using static function of AlgorithmUtility class
 						//of com.bridgelabz.util package
-						int index1=AlgorithmUtility.binarySearchGeneric(array, key1);
+						int index1=AlgorithmUtility.binarySearchGeneric(string2, key1);
 		
-						System.out.println("The key you are searching for is under the index= "+index1);
-				
 						long end_time5=System.nanoTime();
+						System.out.println("The key you are searching for is under the index= "+index1);
 						et6=end_time5-start_time5;
 						elapsed_time.put("String Binary Search",et6);
 						System.out.println("Elapsed time: "+et6);

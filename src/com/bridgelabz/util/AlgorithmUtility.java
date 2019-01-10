@@ -166,8 +166,8 @@ public class AlgorithmUtility<T>{
 	 * @param num the number of strings to be sorted
 	 * @return array the array of strings that are sorted
 	 */
-	public static String[] insertionSort(String[] array,int num) {
-		String temp;
+	public static <T extends Comparable<T>> T[] insertionSort(T[] array,int num) {
+		T temp;
 		for(int i=1;i<num;i++) {
 			temp=array[i];
 			int j;
@@ -294,53 +294,7 @@ public class AlgorithmUtility<T>{
 		int date1=(date+x+(31*month1)/12)%7;
 		return date1;
 	}
-	
-	/**
-	 * static function that sorts the given array using bubble sort algorithm
-	 * 
-	 * @param array the array of integers or strings to be sorted
-	 */
-	public static void bubbleSortGeneric(String[] array) {
-		String temp;
-		for(int i=1;i<=array.length;i++) {
-			for(int j=1;j<=array.length-i;j++) {
-				if(array[j].compareTo(array[j+1])>0) {
-					temp=array[j];
-					array[j]=array[j+1];
-					array[j+1]=temp;
-				}
-			}
-		}
-		System.out.println("The sorted array are:");
-		for(int i=0;i<array.length;i++) {
-			System.out.println(array[i]);
-		}
-	}
-	
-	/**
-	 * static function that sorts the given array using insertion sort
-	 * 
-	 * @param array the array of integers or strings that is to be sorted
-	 * @param num the number of integers to be sorted
-	 */
-	public static void insertionSortGeneric(String[] array,int num) {
-		String temp;
-		for(int i=1;i<num;i++) {
-			temp=array[i];
-			int j;
-			j=i-1;
-			while(j>=0 && array[j].compareTo(temp)>0){
-				array[j+1]=array[j];
-				j=j-1;
-			}
-			array[j+1]=temp;
-		}
-		System.out.println("The sorted array are:");
-		for(int i=0;i<array.length;i++) {
-			System.out.println(array[i]);
-		}
-	}
-	
+		
 	/**
 	 * static function that search for the given key in a array using 
 	 * binary search algorithm
@@ -350,7 +304,7 @@ public class AlgorithmUtility<T>{
 	 * @param key the key to be searched in the array
 	 * @return index the index of the key, found in the array
 	 */
-	public static int binarySearchGeneric(String[] array,String key){
+	public static <T extends Comparable<T>> int binarySearchGeneric(T[] array,T key){
 		int low=0,high=array.length-1;
 		sort(array);
 		int mid=(high+low)/2;
