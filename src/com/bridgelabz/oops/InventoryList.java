@@ -6,7 +6,7 @@ import java.util.List;
 public class InventoryList {
 	private String inventoryName;
 	
-	List<Inventory> listofInventories=new ArrayList<Inventory>();
+	private List<Inventory> listofInventories=new ArrayList<Inventory>();
 
 	public String getInventoryName() {
 		return inventoryName;

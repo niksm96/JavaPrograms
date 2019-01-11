@@ -37,7 +37,7 @@ public class BinarySearchFile {
 		
 		//Method 1- using static function of AlgorithmUtility class of
 		//com.bridgelabz.util package
-		AlgorithmUtility.sort(array);
+		AlgorithmUtility.bubbleSort(array, array.length);
 		
 		for(int i=0;i<array.length;i++)
 		{

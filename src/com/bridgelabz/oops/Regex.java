@@ -31,7 +31,7 @@ public class Regex {
 	        System.out.println("Please enter your 10 digit phone number");
 	        String phoneNum = OopsUtility.userString();
 	        System.out.println("Please enter date in the format DD/MM/YYYY");
-	        String date = OopsUtility.userString();
+	        String date=OopsUtility.userString();
 	        String message = OopsUtility.replace(firstName, fullName, phoneNum, date, line);
 	        System.out.println(message);
 	}

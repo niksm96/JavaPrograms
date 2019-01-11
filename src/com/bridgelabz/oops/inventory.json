@@ -1,2 +1,1 @@
-[{"inventoryName":"rice","listOfInventories":[{"name":"basmathi","weight":"3.5","price":"30"}]},{"inventoryName":"pulses","listOfInventories":[{"name":"beans","weight":"1.5","price":"20"}]},"inventoryName":"wheat""listOfInventories":[{"name":"hard red winter","weight":"4","price":"60"}]}]
-		
+[{"inventoryName":"rice","listofInventories":[{"name":"basmati","weight":40.0,"price":23.0},{"name":"nik","weight":59.0,"price":300.0},{"name":"brown","weight":12.0,"price":30.0}]},{"inventoryName":"pulses","listofInventories":[{"name":"beans","weight":30.0,"price":12.0},{"name":"ragi","weight":20.0,"price":12.0}]},{"inventoryName":"wheat","listofInventories":[{"name":"red wheat","weight":20.0,"price":15.0}]}]

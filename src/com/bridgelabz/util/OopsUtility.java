@@ -14,11 +14,17 @@
 package com.bridgelabz.util;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import com.bridgelabz.oops.Inventory;
+import com.bridgelabz.oops.InventoryList;
 
 public class OopsUtility {
 	
@@ -58,6 +64,14 @@ public class OopsUtility {
 	 */
 	public static String userString(){
 			return s.next();
+	}
+	
+	public static float userFloat(){
+		return s.nextFloat();
+	}
+	
+	public static long userLong(){
+		return s.nextLong();
 	}
 	
 	/**
@@ -112,4 +126,34 @@ public class OopsUtility {
 		return str;
 	}
 	
+	public static Inventory insertData(){
+		Inventory inventory=new Inventory();
+		System.out.println("Enter the name:");
+		inventory.setName(userString());
+		System.out.println("Enter the weight");
+		inventory.setWeight(userFloat());
+		System.out.println("Enter the price");
+		inventory.setPrice(userDouble());
+		return inventory;
+	}
+	
+	public static void writeFile(String json,String filename) throws IOException {
+		FileWriter fw=new FileWriter(filename);
+		BufferedWriter bw=new BufferedWriter(fw);
+		bw.write(json);
+		bw.flush();
+	 }
+	
+	 public static void calulatePrice(List<InventoryList> list){  
+		 for (int i = 0; i < list.size(); i++) {
+			 double sum=0;
+			 InventoryList inList = list.get(i);
+			 System.out.println("Inventory name :" + inList.getInventoryName());
+			 for (int j = 0; j < inList.getListofInventories().size(); j++) {
+				 sum+=inList.getListofInventories().get(j).getPrice();
+			 }	
+			 System.out.println("total price to be given is :"+sum);
+			 System.out.println("---------------------------------------------");
+		 }
+	 }
 }

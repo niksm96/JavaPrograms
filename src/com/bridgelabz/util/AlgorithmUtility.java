@@ -306,7 +306,8 @@ public class AlgorithmUtility<T>{
 	 */
 	public static <T extends Comparable<T>> int binarySearchGeneric(T[] array,T key){
 		int low=0,high=array.length-1;
-		sort(array);
+		int n=array.length;
+		bubbleSort(array, n);
 		int mid=(high+low)/2;
 		while(low<=high){
 			
@@ -426,24 +427,6 @@ public class AlgorithmUtility<T>{
 				return findNumber(mid+1,high);
 			}
 		}while(low<=high);
-	}
-	
-	/**
-	 * static function that is used to sort the array
-	 * 
-	 * @param array the array that is needed to be sorted
-	 */
-	public static <T extends Comparable<T>> void sort(T[] array) {
-		T temp;
-		for(int i=0;i<array.length;i++) {
-			for(int j=0;j<array.length-1;j++) {
-				if(array[j].compareTo(array[j+1])>0) {
-					temp=array[j];
-					array[j]=array[j+1];
-					array[j+1]=temp;
-				}
-			}
-		}
 	}
 	
 	/**
