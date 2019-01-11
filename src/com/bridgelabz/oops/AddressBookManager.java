@@ -2,19 +2,21 @@ package com.bridgelabz.oops;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+
+import org.codehaus.jackson.map.ObjectMapper;
 
 import com.bridgelabz.util.OopsUtility;
 
 public class AddressBookManager {
 	
 	AddressBook ab=new AddressBook();
-	static List<AddressBook> listOfAddBook=new ArrayList<AddressBook>();
+	ObjectMapper objMap=new ObjectMapper();
+	
 	
 	public void createBook() throws IOException{
-		AddressBook addressBook=new AddressBook();
-		File file=new File("E:\\BridgeLabz\\JavaPrograms\\src\\com\\bridgelabz\\oops\\AddressBook1.json");
+		System.out.println("Enter name of address book");
+		String book=OopsUtility.userString();
+		File file=new File("E:\\BridgeLabz\\JavaPrograms\\"+book+".json");
 		boolean rs=file.createNewFile();
 		if(rs){
 			System.out.println("File is created");
@@ -24,8 +26,19 @@ public class AddressBookManager {
 		}
 	}
 	
-	public void openBook(){
-		addressBook();
+	public void openBook() throws IOException{
+		System.out.println("Files available");	
+		File[] arrayOfFiles = new File(System.getProperty("user.dir")).listFiles();
+		for(File file:arrayOfFiles){
+			System.out.println(file);
+		} 
+		System.out.println("Choose the address book");
+		String ch_book=OopsUtility.userString();
+		for(File file:arrayOfFiles){
+			if(ch_book.equals(file.getName())){
+					addressBook();
+			}
+		}
 	}
 	
 	public void addressBook(){
