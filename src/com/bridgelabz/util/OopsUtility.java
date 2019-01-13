@@ -27,7 +27,7 @@ import com.bridgelabz.oops.Inventory;
 import com.bridgelabz.oops.InventoryList;
 
 public class OopsUtility {
-	
+
 	/**
 	 * static object is created for Scanner class to avoid
 	 * multiple object creations of the same class.
@@ -85,9 +85,9 @@ public class OopsUtility {
 	 * @return String
 	 */
 	public static String replace(String first,String fullName,String phoneNum,String date,String line) {
-        final  String REGEX_NAME = "<<name>>";
+        final  String REGEX_NAME = "<{2}+\\w+{2}>";
         final  String REGEX_FULL_NAME = "<<full name>>";
-        final  String REGEX_CONTACT = "xxxxxxxxxx";
+        final  String REGEX_CONTACT = "x{10}";
         final  String REGEX_DATE = "<<XX/XX/XXXX>>";
         Pattern p1 = Pattern.compile(REGEX_NAME);
         Matcher m1 = p1.matcher(line);
@@ -141,7 +141,7 @@ public class OopsUtility {
 		FileWriter fw=new FileWriter(filename);
 		BufferedWriter bw=new BufferedWriter(fw);
 		bw.write(json);
-		bw.flush();
+		bw.close();
 	 }
 	
 	 public static void calulatePrice(List<InventoryList> list){  
@@ -156,4 +156,5 @@ public class OopsUtility {
 			 System.out.println("---------------------------------------------");
 		 }
 	 }
+	 
 }

@@ -7,7 +7,7 @@ import java.util.List;
 import com.bridgelabz.util.OopsUtility;
 
 public class AddressBook {
-	static List<Person> listOfPerson=new ArrayList<Person>();
+	private static List<Person> listOfPerson=new ArrayList<Person>();
 	
 	public void addPerson(){
 		Person person=new Person();
@@ -93,6 +93,14 @@ public class AddressBook {
 		}
 	}
 	
+	public static List<Person> getListOfPerson() {
+		return listOfPerson;
+	}
+
+	public static void setListOfPerson(List<Person> listOfPerson) {
+		AddressBook.listOfPerson = listOfPerson;
+	}
+
 	public void display(){
 		for(Person p:listOfPerson){
 			System.out.println("First Name: "+p.getFirstName());
