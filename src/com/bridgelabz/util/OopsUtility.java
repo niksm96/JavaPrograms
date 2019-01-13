@@ -18,10 +18,17 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.type.CollectionType;
 
 import com.bridgelabz.oops.Inventory;
 import com.bridgelabz.oops.InventoryList;
@@ -34,6 +41,8 @@ public class OopsUtility {
 	 */
 	static Scanner s=new Scanner(System.in);
 
+	static ObjectMapper objectMapper=new ObjectMapper();
+	
 	/**
 	 * static function to read integers input from the user
 	 * @return integer values that are read
@@ -74,6 +83,15 @@ public class OopsUtility {
 		return s.nextLong();
 	}
 	
+	public static <T> List<T> userReadValue(String str, Class<?> clazz) throws JsonParseException, JsonMappingException, IOException{
+		CollectionType colletion = objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, clazz);
+		return objectMapper.readValue(str, colletion);
+	}
+	
+	public static <T> String userWriteValueAsString(List<T> list) throws JsonGenerationException, JsonMappingException, IOException{
+		return objectMapper.writeValueAsString(list);
+	}
+	
 	/**
 	 * Static Function to replace the regular expression with the pattern 
 	 * 
@@ -85,10 +103,10 @@ public class OopsUtility {
 	 * @return String
 	 */
 	public static String replace(String first,String fullName,String phoneNum,String date,String line) {
-        final  String REGEX_NAME = "<{2}+\\w+{2}>";
-        final  String REGEX_FULL_NAME = "<<full name>>";
+        final  String REGEX_NAME = "<{2}+\\w+>{2}";
+        final  String REGEX_FULL_NAME = "<{2}+\\w+ +\\w+>{2}";
         final  String REGEX_CONTACT = "x{10}";
-        final  String REGEX_DATE = "<<XX/XX/XXXX>>";
+        final  String REGEX_DATE = "<{2}+\\d{2}+/+\\d{2}+/+\\d{4}+>{2}";
         Pattern p1 = Pattern.compile(REGEX_NAME);
         Matcher m1 = p1.matcher(line);
         line = m1.replaceAll(first);

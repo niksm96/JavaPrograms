@@ -15,9 +15,7 @@
 package com.bridgelabz.datastructureprograms;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 
 import com.bridgelabz.util.CustomLinkedList;
@@ -36,7 +34,6 @@ public class OrderedList{
 		CustomLinkedList<Integer> ds=new CustomLinkedList<>();
 		String filename="C:\\Users\\Nikita\\Desktop\\Numbers.csv";
 		FileReader fr=new FileReader(filename);
-		CustomLinkedList<Integer> ds1=new CustomLinkedList<>();
 		BufferedReader br=new BufferedReader(fr);
 		String number[]=new String[100];
 		String num;
