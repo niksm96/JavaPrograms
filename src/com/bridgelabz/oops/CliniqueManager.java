@@ -204,7 +204,7 @@ public class CliniqueManager {
 							if (patientAppointmentList.size() < 5) {
 								patientAppointmentList.add(patient);
 								appointment.setListOfPatients(patientAppointmentList);
-								listOfAppointments.add(appointment);
+//								listOfAppointments.add(appointment);
 								System.out.println("Appointment is set");
 								break;
 							} else {

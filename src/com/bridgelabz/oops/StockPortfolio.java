@@ -36,30 +36,30 @@ public class StockPortfolio {
 		try {
 			listOfStock = OopsUtility.userReadValue(string, Stock.class);
 			System.out.println("File is not empty!");
+			for (Stock stock : listOfStock) {
+				System.out.println("Stock Name: " + stock.getStockName());
+				valueOfEachShare = stock.getNoOfShares() * stock.getSharePrice();
+				System.out.println("Value of each stock: " + valueOfEachShare);
+				System.out.println("----------------------------------------");
+			}
 		} catch (Exception e) {
 			System.out.println("File is empty!");
 		}
-		for (Stock stock : listOfStock) {
-			System.out.println("Stock Name: "+stock.getStockName());
-			valueOfEachShare=stock.getNoOfShares()*stock.getSharePrice();
-			System.out.println("Value of each stock: "+valueOfEachShare);
-			System.out.println("----------------------------------------");
-		}
 	}
-	
-	public static void valueOfTotalStocks() throws IOException{
+
+	public static void valueOfTotalStocks() throws IOException {
 		String string = OopsUtility.readJsonFile(stockFile);
-		double totalStockValue=0;
+		double totalStockValue = 0;
 		try {
 			listOfStock = OopsUtility.userReadValue(string, Stock.class);
 			System.out.println("File is not empty!");
+			for (Stock stock : listOfStock) {
+				totalStockValue += (stock.getNoOfShares() * stock.getSharePrice());
+			}
+			System.out.println("Value of Total Stock: " + totalStockValue);
 		} catch (Exception e) {
 			System.out.println("File is empty!");
 		}
-		for(Stock stock: listOfStock){
-			totalStockValue+=(stock.getNoOfShares()*stock.getSharePrice());
-		}
-		System.out.println("Value of Total Stock: "+totalStockValue);
 	}
 
 	public static void displayStockDetails() throws IOException {
@@ -67,14 +67,30 @@ public class StockPortfolio {
 		try {
 			listOfStock = OopsUtility.userReadValue(string, Stock.class);
 			System.out.println("File is not empty!");
+			for (Stock stock : listOfStock) {
+				System.out.println("Stock Name: " + stock.getStockName());
+				System.out.println("Number of Shares: " + stock.getNoOfShares());
+				System.out.println("Share price :" + stock.getSharePrice());
+				System.out.println("------------------------------------");
+			}
 		} catch (Exception e) {
 			System.out.println("File is empty!");
 		}
-		for (Stock stock : listOfStock) {
-			System.out.println("Stock Name: "+stock.getStockName());
-			System.out.println("Number of Shares: "+stock.getNoOfShares());
-			System.out.println("Share price :"+stock.getSharePrice());
-			System.out.println("------------------------------------");
+	}
+
+	public static int noOfShares() throws IOException {
+		String string = OopsUtility.readJsonFile(stockFile);
+		int sum = 0;
+		try {
+			listOfStock = OopsUtility.userReadValue(string, Stock.class);
+			System.out.println("File is not empty!");
+			for (Stock stock : listOfStock) {
+				sum += stock.getNoOfShares();
+			}
+			return sum;
+		} catch (Exception e) {
+			System.out.println("File is empty!");
+			return 0;
 		}
 	}
 }
