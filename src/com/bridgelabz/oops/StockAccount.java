@@ -5,13 +5,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.bridgelabz.util.CustomLinkedList;
 import com.bridgelabz.util.OopsUtility;
+import com.bridgelabz.util.Queue;
+import com.bridgelabz.util.StackLinkedList;
 
 public class StockAccount {
 	static String path = "E:\\BridgeLabz\\JavaPrograms\\";
 	static File[] arrayOfFiles = new File(System.getProperty("user.dir")).listFiles();
 	static String chooseAccount;
 	static List<StockCustomer> listOfStocks = new ArrayList<>();
+	static Queue<String> queue = new Queue<>();
+	static StackLinkedList<String> stack = new StackLinkedList<>();
+	static StackLinkedList<String> temStack=new StackLinkedList<>();
+	static CustomLinkedList<String> linkedList = new CustomLinkedList<>();
 
 	public static void creatAccount() throws IOException {
 		System.out.println("Enter your name");
@@ -61,10 +68,10 @@ public class StockAccount {
 		StockPortfolio.listOfStock = OopsUtility.userReadValue(string, Stock.class);
 		try {
 			listOfStocks = OopsUtility.userReadValue(string1, StockCustomer.class);
-			StockCustomer stockCustomer=newData(stockName, noOfShares);
+			StockCustomer stockCustomer = newData(stockName, noOfShares);
 			listOfStocks.add(stockCustomer);
 		} catch (Exception e) {
-			StockCustomer stockCustomer=newData(stockName, noOfShares);
+			StockCustomer stockCustomer = newData(stockName, noOfShares);
 			listOfStocks.add(stockCustomer);
 		}
 		String json = OopsUtility.userWriteValueAsString(StockPortfolio.listOfStock);
@@ -119,7 +126,8 @@ public class StockAccount {
 						System.out.println("Stock Name: " + stock.getStockName());
 						System.out.println("Number of Shares: " + stock.getNoOfShares());
 						System.out.println("Share price: " + stock.getSharePrice());
-						System.out.println("Transaction: " + stock.getTransaction().toString());
+						System.out.println("Transaction date: " + stock.getTransaction().getDate());
+						System.out.println("Transaction status: " + stock.getTransaction().getTransactionStatus());
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -131,41 +139,55 @@ public class StockAccount {
 
 	public static void sellStock() throws IOException {
 		displayStockAccount();
-		System.out.println("Enter the stock name you wish to sell");
+		System.out.println("Enter the name of the stock you wish to sell");
 		String stockName = OopsUtility.userString();
 		System.out.println("Enter the number of shares you wish to sell");
-		int noOfShares = OopsUtility.userInt();
+		int numOfShares = OopsUtility.userInt();
 		String string = OopsUtility.readJsonFile(path + chooseAccount);
-		String string1 = OopsUtility.readJsonFile(StockPortfolio.stockFile);
+
 		try {
 			listOfStocks = OopsUtility.userReadValue(string, StockCustomer.class);
-			for (StockCustomer stock : listOfStocks) {
-				if (stockName.equals(stock.getStockName())) {
-					StockCustomer newStock = new StockCustomer();
-					newStock.setStockName(stockName);
-					int newNoOfShares = stock.getNoOfShares() - noOfShares;
-					newStock.setNoOfShares(newNoOfShares);
-					newStock.setSharePrice(stock.getSharePrice());
-					Transaction transaction = new Transaction();
-					String date = OopsUtility.getDate();
-					transaction.setDate(date);
-					transaction.setTransactionStatus("Sold");
-					newStock.setTransaction(transaction);
-					listOfStocks.add(newStock);
-				}
-			}
+			StockCustomer newStock = newSoldData(stockName, numOfShares);
+			listOfStocks.add(newStock);
+			updateStock(stockName, numOfShares);
+		} catch (Exception e) {
+			System.out.println("Buy stock before selling it");
+		}
+
+	}
+
+	public static void updateStock(String stockName, int noOfShares) throws IOException {
+		String string1 = OopsUtility.readJsonFile(StockPortfolio.stockFile);
+		try {
 			StockPortfolio.listOfStock = OopsUtility.userReadValue(string1, Stock.class);
 			for (Stock stock : StockPortfolio.listOfStock) {
 				if (stockName.equals(stock.getStockName())) {
-					int newShares = stock.getNoOfShares() + noOfShares;
-					stock.setNoOfShares(newShares);
+					int newNum = stock.getNoOfShares() + noOfShares;
+					stock.setNoOfShares(newNum);
 				}
 			}
-			String json = OopsUtility.userWriteValueAsString(StockPortfolio.listOfStock);
-			OopsUtility.writeFile(json, StockPortfolio.stockFile);
 		} catch (Exception e) {
-			System.out.println("Add stock before you sell it");
+
 		}
+	}
+
+	public static StockCustomer newSoldData(String stockName, int numOfShares) {
+		for (StockCustomer stock : listOfStocks) {
+			if (stockName.equals(stock.getStockName())) {
+				StockCustomer newStock = new StockCustomer();
+				newStock.setStockName(stockName);
+				newStock.setNoOfShares(numOfShares);
+				newStock.setSharePrice(stock.getSharePrice());
+				Transaction transaction = new Transaction();
+				String date = OopsUtility.getDate();
+				transaction.setDate(date);
+				transaction.setTransactionStatus("Sold");
+				newStock.setTransaction(transaction);
+				return newStock;
+			}
+		}
+		return null;
+
 	}
 
 	public static void stockOperation() throws IOException {
@@ -187,7 +209,7 @@ public class StockAccount {
 				isRunning = true;
 				break;
 			case 4:
-				displayStockAccount();
+				printReport();
 				isRunning = true;
 				break;
 			default:
@@ -196,5 +218,42 @@ public class StockAccount {
 				break;
 			}
 		}
+	}
+
+	public static void addPrintReport() throws IOException {
+		String string = OopsUtility.readJsonFile(path + chooseAccount);
+		try {
+			listOfStocks = OopsUtility.userReadValue(string, StockCustomer.class);
+			for (StockCustomer stockCustomer : listOfStocks) {
+				linkedList.add(stockCustomer.getStockName());
+				queue.insert(stockCustomer.getTransaction().getDate());
+				stack.push(stockCustomer.getTransaction().getTransactionStatus());
+			}
+		} catch (Exception e) {
+			System.out.println("File is empty");
+		}
+	}
+
+	public static void printReport() throws IOException{
+		addPrintReport();
+		System.out.println("----Stock Purchase and Sold Details---");
+		System.out.print("Stock Name : ");
+		for (int i = 0; i < linkedList.size(); i++) {
+			linkedList.getLinkedList();
+		}
+		System.out.println();
+		System.out.print("Date       : ");
+		for (int i = 0; i < queue.getSize(); i++) {
+			System.out.print(queue.remove() + "\t");
+		}
+		System.out.println();
+		while (!stack.isEmpty()) {
+			temStack.push(stack.pop());
+		}
+		System.out.print("Status     : ");
+		while (!temStack.isEmpty()) {
+			System.out.print(temStack.pop() + "\t\t\t");
+		}
+		System.out.println("----------------------------------------------------");
 	}
 }

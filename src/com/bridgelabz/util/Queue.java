@@ -112,8 +112,8 @@ public class Queue<T>{
 		else{
 			Node<T> tNode=front;
 			while(tNode!=null){
-				System.out.print(tNode.data+" ");
-				tNode=tNode.next;
+				System.out.print(tNode.getData()+" ");
+				tNode=tNode.getNext();
 			}
 			
 		}

@@ -14,9 +14,9 @@ package com.bridgelabz.datastructureprograms;
 
 public class Node<T> implements Comparable<T>{
 	
-	public T data;
-	public Node<T> next;
-	public Node<T> prev;
+	private T data;
+	private Node<T> next;
+	private Node<T> prev;
 	
 	/**
 	 * Constructors to initialize the instance variables

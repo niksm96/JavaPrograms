@@ -68,8 +68,10 @@ public class Dequeue<T> {
 		}
 		else{
 			Node<T> tNode=new Node<>(data);
-			front.prev=tNode;
-			tNode.next=front;
+			tNode.setNext(front.getNext());
+			front.setNext(tNode.getNext());
+//			front.prev=tNode;
+//			tNode.next=front;
 			front=tNode;
 		}
 		size++;
@@ -88,8 +90,10 @@ public class Dequeue<T> {
 		}
 		else{
 			Node<T> tNode=new Node<>(data);
-			rear.next=tNode;
-			tNode.prev=rear;
+			tNode.setNext(rear.getNext());
+			rear.setNext(rear.getNext());
+//			rear.next=tNode;
+//			tNode.prev=rear;
 			rear=tNode;
 		}
 		size++;
@@ -106,8 +110,10 @@ public class Dequeue<T> {
 			System.out.println("No elements to delete");
 		}
 		else{
-			val=front.data;
-			front=front.next;
+			val=front.getData();
+			front=front.getNext();
+//			val=front.data;
+//			front=front.next;
 		}
 		size--;
 		return val;
@@ -124,9 +130,12 @@ public class Dequeue<T> {
 			System.out.println("No element to delete");
 		}
 		else{
-			val=rear.data;
-			rear=rear.prev;
-			rear.next=null;
+			val=rear.getData();
+			rear=rear.getPrev();
+			rear.setNext(null);
+//			val=rear.data;
+//			rear=rear.prev;
+//			rear.next=null;
 		}
 		size--;
 		return val;
