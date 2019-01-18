@@ -1,6 +1,11 @@
 package com.bridgelabz.oops;
 
 public class DeckOfCards {
+	
+	/*
+	* The main function is written to take input from the user and print
+	* the deck of cards distributed among 4 players 
+	*/
 	public static void main(String[] args) {
 		String[] Suits = { "Clubs", "Diamonds", "Hearts", "Spades" };
 		String[] Ranks = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace" };

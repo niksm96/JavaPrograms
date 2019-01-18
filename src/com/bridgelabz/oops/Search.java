@@ -1,3 +1,15 @@
+/******************************************************************************
+ *  Compilation:  javac -d bin Search.java
+ *  Execution:    java -cp bin com.bridgelabz.oops.Search.java n
+ *  
+ *  Purpose: This class contains search methods for the Clinic Management Application
+ *
+ *  @author  Nikitha Mundargi
+ *  @version 1.0
+ *  @since   12-01-2018
+ *
+ ******************************************************************************/
+
 package com.bridgelabz.oops;
 
 import java.io.IOException;
@@ -8,6 +20,12 @@ import com.bridgelabz.util.OopsUtility;
 
 public class Search {
 
+	/**
+	 * Static function to search doctor by name
+	 * @return list of doctors of the same name 
+	 * 
+	 * @throws IOException
+	 */
 	public static List<Doctor> searchByName() throws IOException {
 		String string = OopsUtility.readJsonFile(CliniqueManager.doctorFile);
 		try {
@@ -28,7 +46,13 @@ public class Search {
 		}
 
 	}
-
+	
+	/**
+	 * Static function to search doctor by id
+	 * @return list of doctors of the same id 
+	 * 
+	 * @throws IOException
+	 */
 	public static List<Doctor> searchById() throws IOException {
 		String string = OopsUtility.readJsonFile(CliniqueManager.doctorFile);
 		try {
@@ -50,6 +74,12 @@ public class Search {
 
 	}
 
+	/**
+	 * Static function to search doctor by specialization
+	 * @return list of doctors of the same specialization
+	 * 
+	 * @throws IOException
+	 */
 	public static List<Doctor> searchBySpecialization() throws IOException {
 		String string = OopsUtility.readJsonFile(CliniqueManager.doctorFile);
 		try {
@@ -71,6 +101,12 @@ public class Search {
 
 	}
 
+	/**
+	 * Static function to search doctor by availability
+	 * @return list of doctors of the same availability
+	 * 
+	 * @throws IOException
+	 */
 	public static List<Doctor> searchByAvailability() throws IOException {
 		String string = OopsUtility.readJsonFile(CliniqueManager.doctorFile);
 		try {
@@ -91,6 +127,12 @@ public class Search {
 
 	}
 
+	/**
+	 * Static function to search patient by id
+	 * @return object of patient 
+	 * 
+	 * @throws IOException
+	 */
 	public static Patient searchByPatientId() throws IOException {
 		String string = OopsUtility.readJsonFile(CliniqueManager.patientFile);
 		CliniqueManager.listOfPatients = OopsUtility.userReadValue(string, Patient.class);
@@ -104,6 +146,12 @@ public class Search {
 		return null;
 	}
 
+	/**
+	 * Static function to search patient by phone number
+	 * @return object of patient 
+	 * 
+	 * @throws IOException
+	 */
 	public static Patient searchByPhoneNo() throws IOException {
 		String string = OopsUtility.readJsonFile(CliniqueManager.patientFile);
 		CliniqueManager.listOfPatients = OopsUtility.userReadValue(string, Patient.class);

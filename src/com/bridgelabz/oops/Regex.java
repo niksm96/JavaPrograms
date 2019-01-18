@@ -7,9 +7,15 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.bridgelabz.util.ApplicationUtility;
 import com.bridgelabz.util.OopsUtility;
 
 public class Regex {
+	
+	/*
+	* The main function is written to take input from the user and
+	* replace the template in the json file with the input given
+	*/
 	public static void main(String[] args) throws FileNotFoundException {
 		 String str = "E:\\BridgeLabz\\JavaPrograms\\src\\com\\bridgelabz\\oops\\regexText.txt";
 	        FileReader f = new FileReader(str);
@@ -33,12 +39,14 @@ public class Regex {
 	        String fullName = firstName + " " + lastName;
 	        System.out.println("Please enter your 10 digit phone number");
 	        String phoneNum = OopsUtility.userString();
-//	        System.out.println("Please enter date in the format DD/MM/YYYY");
-//	        String date=OopsUtility.userString();
 	        Date date=new Date();
 	        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 	        String formattedDate= dateFormat. format(date);
-	        String message = OopsUtility.replace(firstName, fullName, phoneNum, formattedDate, line);
+	        
+	        //Method 1- using non-static function of Regex class
+			//of com.bridgelabz.oops package
+	        String message =ApplicationUtility.replace(firstName, fullName, phoneNum, formattedDate, line);
+	        
 	        System.out.println(message);
 	}
 }

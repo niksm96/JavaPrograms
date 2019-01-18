@@ -1,9 +1,14 @@
 package com.bridgelabz.oops;
 
-import com.bridgelabz.util.OopsUtility;
+import com.bridgelabz.util.ApplicationUtility;
 import com.bridgelabz.util.Queue;
 
 public class QueueDeckCards {
+	
+	/*
+	* The main function is written to distribute deck of cards 
+	* which are shuffled among 4 players
+	*/
 	public static void main(String[] args) {
 		String[] Suits = { "Clubs", "Diamonds", "Hearts", "Spades" };
 		String[] Ranks = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace" };
@@ -20,8 +25,8 @@ public class QueueDeckCards {
 			deck[r] = deck[i];
 			deck[i] = temp;
 		}
-		Queue<Queue<String>> mainQueue = OopsUtility.deckQueueStore(deck);
-		OopsUtility.displayDeck(mainQueue);
+		Queue<Queue<String>> mainQueue =ApplicationUtility.deckQueueStore(deck);
+		ApplicationUtility.displayDeck(mainQueue);
 
 	}
 }

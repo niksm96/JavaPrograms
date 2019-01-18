@@ -1,10 +1,24 @@
+/******************************************************************************
+ *  Compilation:  javac -d bin StockCustomer.java
+ *  Execution:    java -cp bin com.bridgelabz.oops.StockCustomer.java n
+ *  
+ *  Purpose: Creates a plain old java object to achieve encapsulation and for
+ *  		 reusability of the code
+ *
+ *  @author  Nikitha Mundargi
+ *  @version 1.0
+ *  @since   10-01-2018
+ *
+ ******************************************************************************/
+
 package com.bridgelabz.oops;
 
 public class StockCustomer {
+	
 	private String stockName;
 	private int noOfShares;
 	private float sharePrice;
-	private Transaction transaction=new Transaction();
+	private Transaction transaction;
 
 	public String getStockName() {
 		return stockName;
@@ -31,7 +45,7 @@ public class StockCustomer {
 	}
 
 	public Transaction getTransaction() {
-		return transaction;
+		return this.transaction;
 	}
 
 	public void setTransaction(Transaction transaction) {

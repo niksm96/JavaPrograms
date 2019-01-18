@@ -1,16 +1,22 @@
+/******************************************************************************
+ *  Compilation:  javac -d bin Inventory.java
+ *  Execution:    java -cp bin com.bridgelabz.oops.Inventory.java n
+ *  
+ *  Purpose: Creates a plain old java object to achieve encapsulation and for
+ *  		 reusability of the code
+ *
+ *  @author  Nikitha Mundargi
+ *  @version 1.0
+ *  @since   04-01-2018
+ *
+ ******************************************************************************/
+
 package com.bridgelabz.oops;
 
 public class Inventory {
 	private String name;
 	private float weight;
 	private double price;
-	
-	public Inventory(){
-		name=null;
-		weight=0f;
-		price=0.0;
-		
-	}
 	
 	public void setName(String name){
 		this.name=name;

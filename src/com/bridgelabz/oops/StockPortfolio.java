@@ -1,3 +1,15 @@
+/******************************************************************************
+ *  Compilation:  javac -d bin StockPortfolio.java
+ *  Execution:    java -cp bin com.bridgelabz.oops.StockPortfolio.java n
+ *  
+ *  Purpose: This application is to manage stocks
+ *
+ *  @author  Nikitha Mundargi
+ *  @version 1.0
+ *  @since   12-01-2018
+ *
+ ******************************************************************************/
+
 package com.bridgelabz.oops;
 
 import java.io.IOException;
@@ -8,8 +20,13 @@ import com.bridgelabz.util.OopsUtility;
 
 public class StockPortfolio {
 	static List<Stock> listOfStock = new ArrayList<>();
-	static String stockFile = "E:\\BridgeLabz\\JavaPrograms\\src\\com\\bridgelabz\\oops\\Stock.json";
+	static final String stockFile = "/home/admin1/Documents/Nikitha_Project/JavaPrograms/src/com/bridgelabz/oops/Stock.json";
 
+	/**
+	 * Static function to add stock 
+	 * 
+	 * @throws IOException
+	 */
 	public static void addStock() throws IOException {
 		String string = OopsUtility.readJsonFile(stockFile);
 		try {
@@ -30,6 +47,11 @@ public class StockPortfolio {
 		OopsUtility.writeFile(json, stockFile);
 	}
 
+	/**
+	 * Static function to calculate each value of stock
+	 * 
+	 * @throws IOException
+	 */
 	public static void valueOfEachShare() throws IOException {
 		String string = OopsUtility.readJsonFile(stockFile);
 		float valueOfEachShare;
@@ -47,6 +69,10 @@ public class StockPortfolio {
 		}
 	}
 
+	/**
+	 * Static function to calculate the value of total sales
+	 * @throws IOException
+	 */
 	public static void valueOfTotalStocks() throws IOException {
 		String string = OopsUtility.readJsonFile(stockFile);
 		double totalStockValue = 0;
@@ -62,6 +88,11 @@ public class StockPortfolio {
 		}
 	}
 
+	/**
+	 * Static function to display the stock details
+	 * 
+	 * @throws IOException
+	 */
 	public static void displayStockDetails() throws IOException {
 		String string = OopsUtility.readJsonFile(stockFile);
 		try {
@@ -78,6 +109,13 @@ public class StockPortfolio {
 		}
 	}
 
+	/**
+	 * Static function to calculate the number of stocks present 
+	 * 
+	 * @return the number of stocks
+	 * 
+	 * @throws IOException
+	 */
 	public static int noOfShares() throws IOException {
 		String string = OopsUtility.readJsonFile(stockFile);
 		int sum = 0;

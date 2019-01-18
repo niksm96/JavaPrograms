@@ -1,3 +1,16 @@
+/******************************************************************************
+ *  Compilation:  javac -d bin Address.java
+ *  Execution:    java -cp bin com.bridgelabz.oops.Address.java n
+ *  
+ *  Purpose: Creates a plain old java object to achieve encapsulation and for
+ *  		 reusability of the code
+ *
+ *  @author  Nikitha Mundargi
+ *  @version 1.0
+ *  @since   02-01-2018
+ *
+ ******************************************************************************/
+
 package com.bridgelabz.oops;
 
 public class Address {
@@ -6,13 +19,6 @@ public class Address {
 	private String city;
 	private String state;
 	private long zipcode;
-	
-	public Address(){
-		street=null;
-		city=null;
-		state=null;
-		zipcode=0;
-	}
 	
 	public String getStreet() {
 		return street;
@@ -45,6 +51,4 @@ public class Address {
 	public void setZipcode(long zipcode) {
 		this.zipcode = zipcode;
 	}
-	
-	
 }
