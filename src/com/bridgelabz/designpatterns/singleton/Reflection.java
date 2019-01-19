@@ -19,6 +19,8 @@ public class Reflection {
 	        }
 	        System.out.println(instanceOne.hashCode());
 	        System.out.println(instanceTwo.hashCode());
+	        System.out.println(instanceOne);
+	        System.out.println(instanceTwo);
 	    }
 
 }
