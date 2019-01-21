@@ -19,27 +19,36 @@ import java.util.List;
 import com.bridgelabz.util.OopsUtility;
 
 public class AddressBookManager {
-	
+
 	/**
 	 * ch_book is the string declared static and private
 	 */
 	private static String ch_book;
-	
+
 	/**
-	 * addressBook is the object of AddressBook class which is declared static and private and also 
-	 * initialized to zero
+	 * addressBook is the object of AddressBook class which is declared static and
+	 * private and also initialized to zero
 	 */
 	private AddressBook addressBook = null;
 
 	/**
-	 * listOfpersons is the list of persons in a address book and is declared 
+	 * listOfpersons is the list of persons in a address book and is declared
 	 * private and static in order to main single copy of the list.
 	 */
 	private static List<Person> listOfPersons = new ArrayList<Person>();
 
 	/**
-	 * Function to create an address book that is in the form of a file 
-	 * with .json extension
+	 * Function to get files
+	 * 
+	 * @return array of files
+	 */
+	private File[] getFiles() {
+		return new File(System.getProperty("user.dir")).listFiles();
+	}
+
+	/**
+	 * Function to create an address book that is in the form of a file with .json
+	 * extension
 	 * 
 	 * @throws IOException
 	 */
@@ -53,7 +62,7 @@ public class AddressBookManager {
 			System.out.println("File of that name already exists");
 		}
 	}
-	
+
 	/**
 	 * Function to open the address book that we enter
 	 * 
@@ -61,7 +70,7 @@ public class AddressBookManager {
 	 */
 	public void openBook() throws IOException {
 		System.out.println("Files available are:");
-		File[] arrayOfFiles = new File(System.getProperty("user.dir")).listFiles();
+		File[] arrayOfFiles = getFiles();
 		for (File file : arrayOfFiles) {
 			if (file.getName().endsWith(".json"))
 				System.out.println(file.getName());
@@ -75,8 +84,8 @@ public class AddressBookManager {
 					System.out.println("Address book is not empty");
 					String string = OopsUtility.readJsonFile(filename);
 					listOfPersons = OopsUtility.userReadValue(string, AddressBook.class);
-					
-					//Function call to perform various operations on the opened address book
+
+					// Function call to perform various operations on the opened address book
 					addressBook();
 
 				} else {
@@ -87,13 +96,13 @@ public class AddressBookManager {
 			}
 		}
 	}
-	
+
 	/**
-	 * Function to write the list of persons on the address book that is opened 
+	 * Function to write the list of persons on the address book that is opened
 	 */
 	public void saveBook() {
 		System.out.println("Saving " + ch_book + " address book");
-		File[] arrayOfFiles = new File(System.getProperty("user.dir")).listFiles();
+		File[] arrayOfFiles = getFiles();
 		for (File file : arrayOfFiles) {
 			String filename = file.getName();
 			if (ch_book.equals(filename)) {
@@ -115,7 +124,7 @@ public class AddressBookManager {
 	 */
 	public void saveAsBook() throws IOException {
 		System.out.println("Files available are:");
-		File[] arrayOfFiles = new File(System.getProperty("user.dir")).listFiles();
+		File[] arrayOfFiles = getFiles();
 		for (File file : arrayOfFiles) {
 			if (file.getName().endsWith(".json"))
 				System.out.println(file.getName());
@@ -137,8 +146,12 @@ public class AddressBookManager {
 	 * Function to close the address book
 	 */
 	public void close() {
+		System.out.println("Would you like to save the changes? Y / N");
+		String answer = OopsUtility.userString();
+		if (answer.equalsIgnoreCase("Y")) {
+			saveBook();
+		}
 		addressBook = null;
-		listOfPersons = null;
 	}
 
 	/**
@@ -155,41 +168,41 @@ public class AddressBookManager {
 			int choice = OopsUtility.userInt();
 			switch (choice) {
 			case 1:
-				
-				//Function call to add a person 
+
+				// Function call to add a person
 				addressBook.addPerson();
 
 				break;
 			case 2:
-				
-				//Function call to edit the person details 
+
+				// Function call to edit the person details
 				addressBook.editPerson();
 
 				break;
 			case 3:
 
-				//Function call to display the list of persons and their details 
-				//of a particular address book
+				// Function call to display the list of persons and their details
+				// of a particular address book
 				addressBook.display();
 
 				break;
 			case 4:
-				
-				//Function call to delete the person specified 
+
+				// Function call to delete the person specified
 				addressBook.deletePerson();
 
 				break;
 			case 5:
 
-				//Function call to sort the list of persons in multiple ways 
+				// Function call to sort the list of persons in multiple ways
 				sort();
-				
+
 				break;
 			case 6:
-				
-				//Function call to the main method
+
+				// Function call to the main method
 				AddressBookApplication.main(null);
-				
+
 			default:
 				System.out.println("Invalid choice");
 				break;
@@ -198,7 +211,7 @@ public class AddressBookManager {
 	}
 
 	/**
-	 * Function to sort the list of persons of the opened book by their last name 
+	 * Function to sort the list of persons of the opened book by their last name
 	 * and by their address zipcode
 	 */
 	public void sort() {
@@ -209,7 +222,7 @@ public class AddressBookManager {
 		case 1:
 			System.out.println("Sorting by last name");
 
-			//Function call to sort the list of persons by their last name 
+			// Function call to sort the list of persons by their last name
 			addressBook.sortByLastName();
 
 			System.out.println("Your list is sorted");
@@ -217,7 +230,7 @@ public class AddressBookManager {
 		case 2:
 			System.out.println("Sorting by zip code");
 
-			//function call to sort the list of persons by their address zip code
+			// function call to sort the list of persons by their address zip code
 			addressBook.sortByZipCode();
 
 			System.out.println("Your list is sorted");

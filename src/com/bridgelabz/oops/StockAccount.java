@@ -24,7 +24,7 @@ import com.bridgelabz.util.Queue;
 import com.bridgelabz.util.StackLinkedList;
 
 public class StockAccount {
-	static final String path = "E:\\BridgeLabz\\JavaPrograms\\";
+	static final String path = "/home/admin1/Documents/Nikitha_Project/JavaPrograms/";
 
 	static String chooseAccount;
 	static List<StockCustomer> listOfStocks = new ArrayList<>();

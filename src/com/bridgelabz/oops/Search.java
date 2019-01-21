@@ -22,12 +22,13 @@ public class Search {
 
 	/**
 	 * Static function to search doctor by name
-	 * @return list of doctors of the same name 
+	 * 
+	 * @return list of doctors of the same name
 	 * 
 	 * @throws IOException
 	 */
 	public static List<Doctor> searchByName() throws IOException {
-		String string = OopsUtility.readJsonFile(CliniqueManager.doctorFile);
+		String string = OopsUtility.readJsonFile(CliniqueManager.DOCTOR_FILE);
 		try {
 			CliniqueManager.listOfDoctor = OopsUtility.userReadValue(string, Doctor.class);
 			List<Doctor> list = new ArrayList<>();
@@ -46,42 +47,37 @@ public class Search {
 		}
 
 	}
-	
+
 	/**
 	 * Static function to search doctor by id
-	 * @return list of doctors of the same id 
+	 * 
+	 * @return list of doctors of the same id
 	 * 
 	 * @throws IOException
 	 */
-	public static List<Doctor> searchById() throws IOException {
-		String string = OopsUtility.readJsonFile(CliniqueManager.doctorFile);
-		try {
-			CliniqueManager.listOfDoctor = OopsUtility.userReadValue(string, Doctor.class);
-			List<Doctor> list = new ArrayList<>();
-			System.out.println("Enter the doctor's id to be searched");
-			int id = OopsUtility.userInt();
-			for (Doctor doctor : CliniqueManager.listOfDoctor) {
-				if (id == doctor.getId()) {
-					list.add(doctor);
+	public static Doctor searchById() throws IOException {
+		String string = OopsUtility.readJsonFile(CliniqueManager.DOCTOR_FILE);
+		CliniqueManager.listOfDoctor = OopsUtility.userReadValue(string, Doctor.class);
+		System.out.println("Enter the doctor's id to be searched");
+		int id = OopsUtility.userInt();
+		for (Doctor doctor : CliniqueManager.listOfDoctor) {
+			if (id == doctor.getId()) {
+				return doctor;
 
-				}
 			}
-			return list;
-		} catch (Exception e) {
-			System.out.println("File is empty!");
-			return null;
 		}
-
+		return null;
 	}
 
 	/**
 	 * Static function to search doctor by specialization
+	 * 
 	 * @return list of doctors of the same specialization
 	 * 
 	 * @throws IOException
 	 */
 	public static List<Doctor> searchBySpecialization() throws IOException {
-		String string = OopsUtility.readJsonFile(CliniqueManager.doctorFile);
+		String string = OopsUtility.readJsonFile(CliniqueManager.DOCTOR_FILE);
 		try {
 			CliniqueManager.listOfDoctor = OopsUtility.userReadValue(string, Doctor.class);
 			List<Doctor> list = new ArrayList<>();
@@ -103,12 +99,13 @@ public class Search {
 
 	/**
 	 * Static function to search doctor by availability
+	 * 
 	 * @return list of doctors of the same availability
 	 * 
 	 * @throws IOException
 	 */
 	public static List<Doctor> searchByAvailability() throws IOException {
-		String string = OopsUtility.readJsonFile(CliniqueManager.doctorFile);
+		String string = OopsUtility.readJsonFile(CliniqueManager.DOCTOR_FILE);
 		try {
 			CliniqueManager.listOfDoctor = OopsUtility.userReadValue(string, Doctor.class);
 			List<Doctor> list = new ArrayList<>();
@@ -129,12 +126,13 @@ public class Search {
 
 	/**
 	 * Static function to search patient by id
-	 * @return object of patient 
+	 * 
+	 * @return object of patient
 	 * 
 	 * @throws IOException
 	 */
 	public static Patient searchByPatientId() throws IOException {
-		String string = OopsUtility.readJsonFile(CliniqueManager.patientFile);
+		String string = OopsUtility.readJsonFile(CliniqueManager.PATIENT_FILE);
 		CliniqueManager.listOfPatients = OopsUtility.userReadValue(string, Patient.class);
 		System.out.println("Enter the patient's id to be searched");
 		int id = OopsUtility.userInt();
@@ -148,12 +146,13 @@ public class Search {
 
 	/**
 	 * Static function to search patient by phone number
-	 * @return object of patient 
+	 * 
+	 * @return object of patient
 	 * 
 	 * @throws IOException
 	 */
 	public static Patient searchByPhoneNo() throws IOException {
-		String string = OopsUtility.readJsonFile(CliniqueManager.patientFile);
+		String string = OopsUtility.readJsonFile(CliniqueManager.PATIENT_FILE);
 		CliniqueManager.listOfPatients = OopsUtility.userReadValue(string, Patient.class);
 		System.out.println("Enter the patient's phone number to search");
 		long phoneNo = OopsUtility.userLong();

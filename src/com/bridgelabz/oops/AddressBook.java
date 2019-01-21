@@ -15,13 +15,14 @@ package com.bridgelabz.oops;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import com.bridgelabz.util.OopsUtility;
 
 public class AddressBook {
-	
+
 	/**
-	 * listOfpersons is the list of persons in a address book and is declared 
+	 * listOfpersons is the list of persons in a address book and is declared
 	 * private and static in order to main single copy of the list.
 	 */
 	private static List<Person> listOfPerson = new ArrayList<Person>();
@@ -37,11 +38,10 @@ public class AddressBook {
 		person.setLastName(OopsUtility.userString());
 		System.out.println("Enter contact number");
 		person.setContactNo(OopsUtility.userLong());
+
+		// Function call to add the address details of the person
 		
-		//Function call to add the address details of the person 
-		Address address = addressDetails();
-		
-		person.setAddress(address);
+		person.setAddress(addressDetails());
 		listOfPerson.add(person);
 	}
 
@@ -73,41 +73,47 @@ public class AddressBook {
 		String firstName = OopsUtility.userString();
 		System.out.println("Enter last name");
 		String lastName = OopsUtility.userString();
-		for (Person per : listOfPerson) {
-			if (firstName.equals(per.getFirstName()) && lastName.equals(per.getLastName())) {
-				do {
-					System.out.println("Enter the choice you want modify");
-					System.out.println("1:Contact Number  2:Address");
-					int choice = OopsUtility.userInt();
-					switch (choice) {
-					case 1:
-						System.out.println("Enter the new contact number");
-						long newContact = OopsUtility.userLong();
-						per.setContactNo(newContact);
-						System.out.println("Your contact number is updated");
-						break;
-					case 2:
-						Address address = per.getAddress();
-						
-						//Function call to modify the address details of the specified person
-						addressUpdate(address);
-						
-						per.setAddress(address);
-						break;
-					default:
-						System.out.println("Invalid choice");
-						System.exit(0);
-					}
-				} while (per != null);
-			}
-		}
+		Optional<Person> optional = listOfPerson.parallelStream()
+				.filter(person -> firstName.equals(person.getFirstName()) && lastName.equals(person.getLastName()))
+				.findAny();
+		if (optional.isPresent())
+			editUpdate(optional.get());
+		else
+			System.out.println("Person of that name is not present");
 	}
-	
+
+	public void editUpdate(Person per) {
+		do {
+			System.out.println("Enter the choice you want modify");
+			System.out.println("1:Contact Number  2:Address");
+			int choice = OopsUtility.userInt();
+			switch (choice) {
+			case 1:
+				System.out.println("Enter the new contact number");
+				long newContact = OopsUtility.userLong();
+				per.setContactNo(newContact);
+				System.out.println("Your contact number is updated");
+				break;
+			case 2:
+				Address address = per.getAddress();
+
+				// Function call to modify the address details of the specified person
+				addressUpdate(address);
+
+				per.setAddress(address);
+				break;
+			default:
+				System.out.println("Invalid choice");
+				System.exit(0);
+			}
+		} while (per != null);
+	}
+
 	/**
-	 * Function to set the address of the person 
+	 * Function to set the address of the person
 	 * 
-	 * @param address the address that is obtained by the specified person 
- 	 */
+	 * @param address the address that is obtained by the specified person
+	 */
 	public void addressUpdate(Address address) {
 		do {
 			System.out.println("Enter the details of address you want to change");
@@ -149,17 +155,17 @@ public class AddressBook {
 	 * Function to display the list of persons in the particular address book
 	 */
 	public void display() {
-		for (Person p : listOfPerson) {
-			System.out.println("First Name: " + p.getFirstName());
-			System.out.println("Last Name: " + p.getLastName());
-			System.out.println("Contact Number: " + p.getContactNo());
-			Address add = p.getAddress();
+	listOfPerson.forEach(person->{
+			System.out.println("First Name: " + person.getFirstName());
+			System.out.println("Last Name: " + person.getLastName());
+			System.out.println("Contact Number: " + person.getContactNo());
+			Address add = person.getAddress();
 			System.out.println("Street: " + add.getStreet());
 			System.out.println("City: " + add.getCity());
 			System.out.println("State: " + add.getState());
 			System.out.println("Zip code: " + add.getZipcode());
 			System.out.println("-------------------------------------");
-		}
+		});
 	}
 
 	/**
@@ -172,14 +178,14 @@ public class AddressBook {
 		System.out.println("Enter last name");
 		String lastName = OopsUtility.userString();
 		if (!listOfPerson.isEmpty()) {
-			for (Person per : listOfPerson) {
-				if (firstName.equals(per.getFirstName()) && lastName.equals(per.getLastName())) {
-					listOfPerson.remove(per);
-					System.out.println("The person has been deleted");
-					break;
-				}
-			}
-		}
+			boolean isRemoved = listOfPerson.removeIf(
+					person -> firstName.equals(person.getFirstName()) && lastName.equals(person.getLastName()));
+			if (isRemoved)
+				System.out.println("The person has been deleted");
+			else
+				System.out.println("The person of that name does'nt exist");
+		} else
+			System.out.println("Address Book is empty!");
 	}
 
 	/**

@@ -146,12 +146,23 @@ public class OopsUtility {
 		br.close();
 		return str;
 	}
-
+	
+	/**
+	 * Function to write on to file
+	 * @param json 
+	 * @param filename
+	 * @throws IOException
+	 */
 	public static void writeFile(String json, String filename) throws IOException {
 		FileWriter fw = new FileWriter(filename);
 		BufferedWriter bw = new BufferedWriter(fw);
 		bw.write(json);
 		bw.close();
+	}
+	
+	public static <T> void writeToFile(String filename,List<T> list) throws JsonGenerationException, JsonMappingException, IOException {
+		String jsonString = userWriteValueAsString(list);
+		writeFile(jsonString, filename);
 	}
 	
 }
